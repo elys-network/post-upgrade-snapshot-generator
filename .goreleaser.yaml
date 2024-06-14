@@ -23,8 +23,14 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
       - -w -s
       - -linkmode=external
+    tags:
+      - netgo
+      - ledger
+      - static_wasm
+      - pebbledb
   - id: upgrade-assure-darwin-arm64
     main: ./cmd/upgrade-assure
     binary: upgrade-assure
@@ -46,8 +52,14 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
       - -w -s
       - -linkmode=external
+    tags:
+      - netgo
+      - ledger
+      - static_wasm
+      - pebbledb
   - id: upgrade-assure-linux-amd64
     main: ./cmd/upgrade-assure
     binary: upgrade-assure
@@ -68,9 +80,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
       - -w -s
       - -linkmode=external
       - -extldflags '-Wl,-z,muldefs -static -lm'
+    tags:
+      - netgo
+      - ledger
+      - muslc
+      - osusergo
+      - pebbledb
   - id: upgrade-assure-linux-arm64
     main: ./cmd/upgrade-assure
     binary: upgrade-assure
@@ -91,9 +110,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
       - -w -s
       - -linkmode=external
       - -extldflags '-Wl,-z,muldefs -static -lm'
+    tags:
+      - netgo
+      - ledger
+      - muslc
+      - osusergo
+      - pebbledb
   - id: upload-snapshot-darwin-amd64
     main: ./cmd/upload-snapshot
     binary: upload-snapshot
@@ -115,8 +141,14 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
       - -w -s
       - -linkmode=external
+    tags:
+      - netgo
+      - ledger
+      - static_wasm
+      - pebbledb
   - id: upload-snapshot-darwin-arm64
     main: ./cmd/upload-snapshot
     binary: upload-snapshot
@@ -138,8 +170,14 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
       - -w -s
       - -linkmode=external
+    tags:
+      - netgo
+      - ledger
+      - static_wasm
+      - pebbledb
   - id: upload-snapshot-linux-amd64
     main: ./cmd/upload-snapshot
     binary: upload-snapshot
@@ -160,9 +198,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
       - -w -s
       - -linkmode=external
       - -extldflags '-Wl,-z,muldefs -static -lm'
+    tags:
+      - netgo
+      - ledger
+      - muslc
+      - osusergo
+      - pebbledb
   - id: upload-snapshot-linux-arm64
     main: ./cmd/upload-snapshot
     binary: upload-snapshot
@@ -183,9 +228,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
       - -w -s
       - -linkmode=external
       - -extldflags '-Wl,-z,muldefs -static -lm'
+    tags:
+      - netgo
+      - ledger
+      - muslc
+      - osusergo
+      - pebbledb
   - id: delete-snapshot-darwin-amd64
     main: ./cmd/delete-snapshot
     binary: delete-snapshot
@@ -207,8 +259,14 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
       - -w -s
       - -linkmode=external
+    tags:
+      - netgo
+      - ledger
+      - static_wasm
+      - pebbledb
   - id: delete-snapshot-darwin-arm64
     main: ./cmd/delete-snapshot
     binary: delete-snapshot
@@ -230,8 +288,14 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
       - -w -s
       - -linkmode=external
+    tags:
+      - netgo
+      - ledger
+      - static_wasm
+      - pebbledb
   - id: delete-snapshot-linux-amd64
     main: ./cmd/delete-snapshot
     binary: delete-snapshot
@@ -252,9 +316,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
       - -w -s
       - -linkmode=external
       - -extldflags '-Wl,-z,muldefs -static -lm'
+    tags:
+      - netgo
+      - ledger
+      - muslc
+      - osusergo
+      - pebbledb
   - id: delete-snapshot-linux-arm64
     main: ./cmd/delete-snapshot
     binary: delete-snapshot
@@ -275,9 +346,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
       - -w -s
       - -linkmode=external
       - -extldflags '-Wl,-z,muldefs -static -lm'
+    tags:
+      - netgo
+      - ledger
+      - muslc
+      - osusergo
+      - pebbledb
 universal_binaries:
   - id: upgrade-assure-darwin-universal
     ids:
