@@ -1,0 +1,344 @@
+project_name: post-upgrade-snapshot-generator
+env:
+  - CGO_ENABLED=1
+builds:
+  - id: upgrade-assure-darwin-amd64
+    main: ./cmd/upgrade-assure
+    binary: upgrade-assure
+    env:
+      - CC=o64-clang
+      - CGO_LDFLAGS=-L/lib
+    goos:
+      - darwin
+    goarch:
+      - amd64
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+  - id: upgrade-assure-darwin-arm64
+    main: ./cmd/upgrade-assure
+    binary: upgrade-assure
+    env:
+      - CC=oa64-clang
+      - CGO_LDFLAGS=-L/lib
+    goos:
+      - darwin
+    goarch:
+      - arm64
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+  - id: upgrade-assure-linux-amd64
+    main: ./cmd/upgrade-assure
+    binary: upgrade-assure
+    goos:
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+      - -extldflags '-Wl,-z,muldefs -static -lm'
+  - id: upgrade-assure-linux-arm64
+    main: ./cmd/upgrade-assure
+    binary: upgrade-assure
+    goos:
+      - linux
+    goarch:
+      - arm64
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+      - -extldflags '-Wl,-z,muldefs -static -lm'
+  - id: upload-snapshot-darwin-amd64
+    main: ./cmd/upload-snapshot
+    binary: upload-snapshot
+    env:
+      - CC=o64-clang
+      - CGO_LDFLAGS=-L/lib
+    goos:
+      - darwin
+    goarch:
+      - amd64
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+  - id: upload-snapshot-darwin-arm64
+    main: ./cmd/upload-snapshot
+    binary: upload-snapshot
+    env:
+      - CC=oa64-clang
+      - CGO_LDFLAGS=-L/lib
+    goos:
+      - darwin
+    goarch:
+      - arm64
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+  - id: upload-snapshot-linux-amd64
+    main: ./cmd/upload-snapshot
+    binary: upload-snapshot
+    goos:
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+      - -extldflags '-Wl,-z,muldefs -static -lm'
+  - id: upload-snapshot-linux-arm64
+    main: ./cmd/upload-snapshot
+    binary: upload-snapshot
+    goos:
+      - linux
+    goarch:
+      - arm64
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+      - -extldflags '-Wl,-z,muldefs -static -lm'
+  - id: delete-snapshot-darwin-amd64
+    main: ./cmd/delete-snapshot
+    binary: delete-snapshot
+    env:
+      - CC=o64-clang
+      - CGO_LDFLAGS=-L/lib
+    goos:
+      - darwin
+    goarch:
+      - amd64
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+  - id: delete-snapshot-darwin-arm64
+    main: ./cmd/delete-snapshot
+    binary: delete-snapshot
+    env:
+      - CC=oa64-clang
+      - CGO_LDFLAGS=-L/lib
+    goos:
+      - darwin
+    goarch:
+      - arm64
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+  - id: delete-snapshot-linux-amd64
+    main: ./cmd/delete-snapshot
+    binary: delete-snapshot
+    goos:
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+      - -extldflags '-Wl,-z,muldefs -static -lm'
+  - id: delete-snapshot-linux-arm64
+    main: ./cmd/delete-snapshot
+    binary: delete-snapshot
+    goos:
+      - linux
+    goarch:
+      - arm64
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
+      - -w -s
+      - -linkmode=external
+      - -extldflags '-Wl,-z,muldefs -static -lm'
+universal_binaries:
+  - id: upgrade-assure-darwin-universal
+    ids:
+      - upgrade-assure-darwin-amd64
+      - upgrade-assure-darwin-arm64
+    replace: false
+  - id: upload-snapshot-darwin-universal
+    ids:
+      - upload-snapshot-darwin-amd64
+      - upload-snapshot-darwin-arm64
+    replace: false
+  - id: delete-snapshot-darwin-universal
+    ids:
+      - delete-snapshot-darwin-amd64
+      - delete-snapshot-darwin-arm64
+    replace: false
+archives:
+  - id: upgrade-assure-zipped
+    builds:
+      - upgrade-assure-darwin-universal
+      - upgrade-assure-linux-amd64
+      - upgrade-assure-linux-arm64
+      - upgrade-assure-darwin-amd64
+      - upgrade-assure-darwin-arm64
+    name_template: "upgrade-assure-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    format: tar.gz
+    files:
+      - none*
+  - id: upgrade-assure-binaries
+    builds:
+      - upgrade-assure-darwin-universal
+      - upgrade-assure-linux-amd64
+      - upgrade-assure-linux-arm64
+      - upgrade-assure-darwin-amd64
+      - upgrade-assure-darwin-arm64
+    name_template: "upgrade-assure-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    format: binary
+    files:
+      - none*
+  - id: upload-snapshot-zipped
+    builds:
+      - upload-snapshot-darwin-universal
+      - upload-snapshot-linux-amd64
+      - upload-snapshot-linux-arm64
+      - upload-snapshot-darwin-amd64
+      - upload-snapshot-darwin-arm64
+    name_template: "upload-snapshot-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    format: tar.gz
+    files:
+      - none*
+  - id: upload-snapshot-binaries
+    builds:
+      - upload-snapshot-darwin-universal
+      - upload-snapshot-linux-amd64
+      - upload-snapshot-linux-arm64
+      - upload-snapshot-darwin-amd64
+      - upload-snapshot-darwin-arm64
+    name_template: "upload-snapshot-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    format: binary
+    files:
+      - none*
+  - id: delete-snapshot-zipped
+    builds:
+      - delete-snapshot-darwin-universal
+      - delete-snapshot-linux-amd64
+      - delete-snapshot-linux-arm64
+      - delete-snapshot-darwin-amd64
+      - delete-snapshot-darwin-arm64
+    name_template: "delete-snapshot-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    format: tar.gz
+    files:
+      - none*
+  - id: delete-snapshot-binaries
+    builds:
+      - delete-snapshot-darwin-universal
+      - delete-snapshot-linux-amd64
+      - delete-snapshot-linux-arm64
+      - delete-snapshot-darwin-amd64
+      - delete-snapshot-darwin-arm64
+    name_template: "delete-snapshot-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    format: binary
+    files:
+      - none*
+checksum:
+  name_template: "sha256sum.txt"
+  algorithm: sha256
+changelog:
+  skip: true
+release:
+  github:
+    owner: elys-network
+    name: post-upgrade-snapshot-generator
+  replace_existing_draft: true
+  header: |
+    ## What's Changed
+
+    See the full changelog [here](https://github.com/elys-network/post-upgrade-snapshot-generator/blob/v{{ .Version }}/CHANGELOG.md)
+  name_template: "v{{.Version}}"
+  mode: replace
+  draft: false

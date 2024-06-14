@@ -1,0 +1,9 @@
+release/
+.idea/
+.vscode/
+.DS_Store
+build
+dist
+.env
+*-skip
+__debug*
