@@ -3,7 +3,7 @@ env:
   - CGO_ENABLED=1
 builds:
   - id: post-upgrade-snapshot-generator-darwin-amd64
-    main: ./cmd/post-upgrade-snapshot-generator/main.go
+    main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
     hooks:
       pre:
@@ -32,7 +32,7 @@ builds:
       - static_wasm
       - pebbledb
   - id: post-upgrade-snapshot-generator-darwin-arm64
-    main: ./cmd/post-upgrade-snapshot-generator/main.go
+    main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
     hooks:
       pre:
