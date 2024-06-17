@@ -27,46 +27,19 @@ GO_VERSION := $(shell cat go.mod | grep -E 'go [0-9].[0-9]+' | cut -d ' ' -f 2)
 
 BUILD_FOLDER = ./build
 
-## build: Build all binaries
-build: build-upgrade-assure build-upload-snapshot build-delete-snapshot
-
-upgrade_assure_ldflags =	-X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upgrade-assure \
-							-X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upgrade-assure \
+ldflags =	-X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=post-upgrade-snapshot-generator \
+							-X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=post-upgrade-snapshot-generator \
 							-X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=$(VERSION) \
 	  						-X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit=$(COMMIT)
-upgrade_assure_build_flags = -ldflags '$(upgrade_assure_ldflags)' -tags '$(GOTAGS)'
+build_flags = -ldflags '$(ldflags)' -tags '$(GOTAGS)'
 
-## build-upgrade-assure: Build the binary for upgrade assure
-build-upgrade-assure: check-version go.sum
-	@echo Building Upgrade assure binary...
+## build: Build post-upgrade-snapshot-generator binary
+build: check-version go.sum
+	@echo Building Post upgrade snapshot generator binary...
 	@-mkdir -p $(BUILD_FOLDER) 2> /dev/null
-	@GOFLAGS=$(GOFLAGS) go build $(upgrade_assure_build_flags) -o $(BUILD_FOLDER) ./cmd/upgrade-assure
+	@GOFLAGS=$(GOFLAGS) go build $(build_flags) -o $(BUILD_FOLDER)/post-upgrade-snapshot-generator ./cmd
 
-upload_snapshot_ldflags =	-X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=upload-snapshot \
-							-X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=upload-snapshot \
-							-X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=$(VERSION) \
-	  						-X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit=$(COMMIT)
-upload_snapshot_build_flags = -ldflags '$(upload_snapshot_ldflags)' -tags '$(GOTAGS)'
-
-## build-upload-snapshot: Build the binary for upload snapshot
-build-upload-snapshot: check-version go.sum
-	@echo Building Upload snapshot binary...
-	@-mkdir -p $(BUILD_FOLDER) 2> /dev/null
-	@GOFLAGS=$(GOFLAGS) go build $(upload_snapshot_build_flags) -o $(BUILD_FOLDER) ./cmd/upload-snapshot
-
-delete_snapshot_ldflags =	-X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=delete-snapshot \
-							-X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=delete-snapshot \
-							-X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=$(VERSION) \
-	  						-X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit=$(COMMIT)
-delete_snapshot_build_flags = -ldflags '$(delete_snapshot_ldflags)' -tags '$(GOTAGS)'
-
-## build-delete-snapshot: Build the binary for delete snapshot
-build-delete-snapshot: check-version go.sum
-	@echo Building Delete snapshot binary...
-	@-mkdir -p $(BUILD_FOLDER) 2> /dev/null
-	@GOFLAGS=$(GOFLAGS) go build $(delete_snapshot_build_flags) -o $(BUILD_FOLDER) ./cmd/delete-snapshot
-
-.PHONY: build build-upgrade-assure build-upload-snapshot build-delete-snapshot
+.PHONY: build
 
 ## clean: Clean build files. Runs `go clean` internally.
 clean:
