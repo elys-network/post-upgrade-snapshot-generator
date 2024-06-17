@@ -61,7 +61,7 @@ builds:
       - static_wasm
       - pebbledb
   - id: post-upgrade-snapshot-generator-linux-amd64
-    main: ./cmd/post-upgrade-snapshot-generator
+    main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
     hooks:
       pre:
@@ -91,7 +91,7 @@ builds:
       - osusergo
       - pebbledb
   - id: post-upgrade-snapshot-generator-linux-arm64
-    main: ./cmd/post-upgrade-snapshot-generator
+    main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
     hooks:
       pre:
