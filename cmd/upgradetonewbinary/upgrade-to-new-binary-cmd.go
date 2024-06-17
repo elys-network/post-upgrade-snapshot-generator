@@ -18,7 +18,7 @@ func UpgradeToNewBinaryCmd() *cobra.Command {
 		Args:  cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			// get args
-			newBinaryUrl := args[1]
+			newBinaryUrl := args[0]
 			if newBinaryUrl == "" {
 				log.Fatalf(types.ColorRed + "new binary url is required")
 			}
