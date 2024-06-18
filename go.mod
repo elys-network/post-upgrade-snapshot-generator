@@ -10,7 +10,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.1
 	github.com/cosmos/cosmos-sdk v0.47.11
 	github.com/cosmos/ibc-go/v7 v7.4.0
-	github.com/elys-network/elys v0.32.0
+	github.com/elys-network/elys v0.33.0
 	github.com/spf13/cobra v1.8.0
 	github.com/vbauerster/mpb/v8 v8.7.3
 )

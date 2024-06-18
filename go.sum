@@ -310,8 +310,8 @@ github.com/eclipse/paho.mqtt.golang v1.2.0/go.mod h1:H9keYFcgq3Qr5OUJm/JZI/i6U7j
 github.com/edsrzf/mmap-go v1.0.0/go.mod h1:YO35OhQPt3KJa3ryjFM5Bs14WD66h8eGKpfaBNrHW5M=
 github.com/elys-network/bandchain-packet v0.0.3-sdk47 h1:W4sP/JOXAoABhsV+ck1NTphLuqpuxGg+uul1nDLbgxk=
 github.com/elys-network/bandchain-packet v0.0.3-sdk47/go.mod h1:/CtU24lu2E4RbPRcZFJfEagwW6TUdFcxv7pX0cYYSgk=
-github.com/elys-network/elys v0.32.0 h1:OI3o1AYSpPNBD3oKYKfdQu5Eyf7JgaMOEJESzkGLPUo=
-github.com/elys-network/elys v0.32.0/go.mod h1:bjVlUSWV43lAc/gZUGhVet/KowKfPL5kVeIIiShr5/A=
+github.com/elys-network/elys v0.33.0 h1:vEODN9NRZDINf4F2cA5XWjA0jag/o0rZep/s3CASOhI=
+github.com/elys-network/elys v0.33.0/go.mod h1:bjVlUSWV43lAc/gZUGhVet/KowKfPL5kVeIIiShr5/A=
 github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=
