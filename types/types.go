@@ -119,10 +119,19 @@ type AppState struct {
 type Masterchef struct {
 	mastercheftypes.GenesisState
 
-	ExternalIncentiveIndex json.Number                `json:"external_incentive_index"`
-	PoolInfos              []MasterchefPoolInfo       `json:"pool_infos"`
-	PoolRewardInfos        []MasterchefPoolRewardInfo `json:"pool_reward_infos"`
-	UserRewardInfos        []MasterchefUserRewardInfo `json:"user_reward_infos"`
+	ExternalIncentiveIndex json.Number                 `json:"external_incentive_index"`
+	PoolInfos              []MasterchefPoolInfo        `json:"pool_infos"`
+	PoolRewardInfos        []MasterchefPoolRewardInfo  `json:"pool_reward_infos"`
+	UserRewardInfos        []MasterchefUserRewardInfo  `json:"user_reward_infos"`
+	PoolRewardsAccum       []MasterchefPoolRewardAccum `json:"pool_rewards_accum"`
+}
+
+type MasterchefPoolRewardAccum struct {
+	mastercheftypes.PoolRewardsAccum
+
+	PoolId      json.Number `json:"pool_id"`
+	BlockHeight json.Number `json:"block_height"`
+	Timestamp   json.Number `json:"timestamp"`
 }
 
 type MasterchefUserRewardInfo struct {
