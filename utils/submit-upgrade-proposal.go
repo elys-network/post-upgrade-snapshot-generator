@@ -24,7 +24,7 @@ func SubmitUpgradeProposal(cmdPath, name, newVersion, upgradeHeight, homePath, k
 		"--chain-id", chainId,
 		"--node", node,
 		"--broadcast-mode", broadcastMode,
-		"--fees", "100000uelys",
+		"--fees", "1000000uelys",
 		"--gas", "1000000",
 		"--deposit", "10000000uelys",
 		"--home", homePath,

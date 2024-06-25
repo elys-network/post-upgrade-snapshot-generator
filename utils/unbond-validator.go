@@ -21,7 +21,7 @@ func UnbondValidator(cmdPath, validatorKeyName, operatorAddress, validatorSelfDe
 		"--chain-id", chainId,
 		"--node", rpc,
 		"--broadcast-mode", broadcastMode,
-		"--fees", "100000uelys",
+		"--fees", "1000000uelys",
 		"--gas", "1000000",
 		"--home", homePath,
 		"--output", "json",
