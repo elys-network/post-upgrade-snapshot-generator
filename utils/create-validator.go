@@ -25,7 +25,7 @@ func CreateValidator(cmdPath, name, selfDelegation, moniker, pubkey, homePath, k
 		"--chain-id", chainId,
 		"--node", node,
 		"--broadcast-mode", broadcastMode,
-		"--fees", "100000uelys",
+		"--fees", "1000000uelys",
 		"--gas", "3000000",
 		"--gas-adjustment", "1.5",
 		"--home", homePath,
