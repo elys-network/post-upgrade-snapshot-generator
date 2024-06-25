@@ -27,6 +27,9 @@ func UpdateConfig(homePath, dbEngine string) {
 	// Update app.toml for app-db-backend
 	Sed("s/^app\\-db\\-backend =.*/app\\-db\\-backend = \\\""+dbEngine+"\\\"/", appPath)
 
+	// Update app.toml for gas-to-suggest
+	Sed("s/^gas\\-to\\-suggest =.*/gas\\-to\\-suggest = 300000/", appPath)
+
 	// Update client.toml for keyring-backend
 	Sed("s/^keyring\\-backend =.*/keyring\\-backend = \\\"test\\\"/", clientPath)
 
