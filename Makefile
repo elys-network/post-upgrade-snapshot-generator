@@ -28,10 +28,16 @@ GO_VERSION := $(shell cat go.mod | grep -E 'go [0-9].[0-9]+' | cut -d ' ' -f 2)
 BUILD_FOLDER = ./build
 
 ldflags =	-X github.com/elys-network/post-upgrade-snapshot-generator/version.Name=post-upgrade-snapshot-generator \
-							-X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=post-upgrade-snapshot-generator \
-							-X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=$(VERSION) \
-	  						-X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit=$(COMMIT)
+			-X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=post-upgrade-snapshot-generator \
+			-X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=$(VERSION) \
+			-X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit=$(COMMIT)
 build_flags = -ldflags '$(ldflags)' -tags '$(GOTAGS)'
+
+## install: Install post-upgrade-snapshot-generator binary in $GOBIN
+install: check-version go.sum
+	@echo Installing Post upgrade snapshot generator binary...
+	@GOFLAGS=$(GOFLAGS) go build $(build_flags) -o $(HOME)/go/bin/post-upgrade-snapshot-generator ./cmd
+	@post-upgrade-snapshot-generator version
 
 ## build: Build post-upgrade-snapshot-generator binary
 build: check-version go.sum
