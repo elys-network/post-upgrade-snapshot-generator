@@ -64,6 +64,9 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 
 	genesis.AppState.Bank.Balances, coinsToRemove = FilterBalancesByDenoms(genesis.AppState.Bank.Balances, addressDenomMap)
 
+	// update bank params
+	genesis.AppState.Bank.Params.DefaultSendEnabled = true
+
 	// update supply
 	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Sub(coinsToRemove...)
 
