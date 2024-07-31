@@ -45,7 +45,7 @@ build: check-version go.sum
 	@-mkdir -p $(BUILD_FOLDER) 2> /dev/null
 	@GOFLAGS=$(GOFLAGS) go build $(build_flags) -o $(BUILD_FOLDER)/post-upgrade-snapshot-generator ./cmd
 
-.PHONY: build
+.PHONY: install build
 
 ## clean: Clean build files. Runs `go clean` internally.
 clean:
