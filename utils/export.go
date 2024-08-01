@@ -13,7 +13,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"assetprofile",
 		"auth",
 		"authz",
-		// "bank", // FIXME: causes the init genesis state from genesis.json to OOM (kill process)
+		"bank", // FIXME: causes the init genesis state from genesis.json to OOM (kill process)
 		"burner",
 		"capability",
 		"clock",
