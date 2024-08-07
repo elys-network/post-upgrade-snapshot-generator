@@ -20,7 +20,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		// "commitment", // FIXME: causes the balance mismatch error
 		"consensus",
 		"crisis",
-		"distribution", // FIXME: optimize data prior to export as it reached 1.8GB
+		// "distribution", // FIXME: optimize data prior to export as it reached 1.8GB
 		"epochs",
 		"estaking",
 		"evidence",

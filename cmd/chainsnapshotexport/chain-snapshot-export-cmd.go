@@ -5,6 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	elysdcmd "github.com/elys-network/elys/cmd/elysd/cmd"
 	"github.com/elys-network/post-upgrade-snapshot-generator/flags"
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
@@ -16,6 +17,9 @@ func ChainSnapshotExportCmd() *cobra.Command {
 		Short: "Export the chain snapshot",
 		Args:  cobra.ExactArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
+			// set prefix
+			elysdcmd.InitSDKConfig()
+
 			// get args
 			snapshotUrl := args[0]
 			if snapshotUrl == "" {

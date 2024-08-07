@@ -5,6 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	elysdcmd "github.com/elys-network/elys/cmd/elysd/cmd"
 	"github.com/elys-network/post-upgrade-snapshot-generator/flags"
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
@@ -15,6 +16,9 @@ func PrepareValidatorDataCmd() *cobra.Command {
 		Use:   "prepare-validator-data",
 		Short: "Prepare validator data",
 		Run: func(cmd *cobra.Command, args []string) {
+			// set prefix
+			elysdcmd.InitSDKConfig()
+
 			// node 1
 			homePath, _ := cmd.Flags().GetString(flags.FlagHome)
 			if homePath == "" {
