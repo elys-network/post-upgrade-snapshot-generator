@@ -6,6 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	elysdcmd "github.com/elys-network/elys/cmd/elysd/cmd"
 	"github.com/elys-network/post-upgrade-snapshot-generator/flags"
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
@@ -17,6 +18,9 @@ func CreateSecondValidatorCmd() *cobra.Command {
 		Short: "Create a second validator",
 		Args:  cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
+			// set prefix
+			elysdcmd.InitSDKConfig()
+
 			// get args
 			oldBinaryUrl := args[0]
 			if oldBinaryUrl == "" {
