@@ -32,12 +32,12 @@ func DeleteSnapshotCmd() *cobra.Command {
 			// Fetch credentials and configuration from environment variables
 			accessKey := os.Getenv("R2_ACCESS_KEY")
 			secretKey := os.Getenv("R2_SECRET_KEY")
-			s3URL := os.Getenv("R2_ENDPOINT")
+			accountId := os.Getenv("R2_ACCOUNT_ID")
 			bucketName := os.Getenv("R2_BUCKET_NAME")
 
 			// Ensure all required environment variables are set
-			if accessKey == "" || secretKey == "" || s3URL == "" || bucketName == "" {
-				fmt.Println("Please set R2_ACCESS_KEY, R2_SECRET_KEY, R2_ENDPOINT, and R2_BUCKET_NAME environment variables")
+			if accessKey == "" || secretKey == "" || accountId == "" || bucketName == "" {
+				fmt.Println("Please set R2_ACCESS_KEY, R2_SECRET_KEY, R2_ACCOUNT_ID, and R2_BUCKET_NAME environment variables")
 				os.Exit(1)
 			}
 
@@ -47,16 +47,7 @@ func DeleteSnapshotCmd() *cobra.Command {
 				config.WithCredentialsProvider(
 					credentials.NewStaticCredentialsProvider(accessKey, secretKey, ""),
 				),
-				config.WithRegion("auto"), // Ensure this region is appropriate or set it via environment variable if needed
-				config.WithEndpointResolverWithOptions(
-					aws.EndpointResolverWithOptionsFunc(
-						func(service, region string, options ...interface{}) (aws.Endpoint, error) {
-							return aws.Endpoint{
-								URL: s3URL,
-							}, nil
-						},
-					),
-				),
+				config.WithRegion("auto"),
 			)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "failed to load configuration, %v", err)
@@ -64,7 +55,9 @@ func DeleteSnapshotCmd() *cobra.Command {
 			}
 
 			// Create an S3 client
-			client := s3.NewFromConfig(cfg)
+			client := s3.NewFromConfig(cfg, func(o *s3.Options) {
+				o.BaseEndpoint = aws.String(fmt.Sprintf("https://%s.r2.cloudflarestorage.com", accountId))
+			})
 
 			// Create a presigner
 			presignClient := s3.NewPresignClient(client)
