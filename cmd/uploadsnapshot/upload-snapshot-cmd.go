@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
 
@@ -67,6 +68,10 @@ func UploadSnapshotCmd() *cobra.Command {
 			// Create an S3 client
 			client := s3.NewFromConfig(cfg)
 
+			// Create a presigner
+			presignClient := s3.NewPresignClient(client)
+			presigner := types.Presigner{PresignClient: presignClient}
+
 			// Open the file to upload
 			file, err := os.Open(filePath)
 			if err != nil {
@@ -104,16 +109,26 @@ func UploadSnapshotCmd() *cobra.Command {
 
 			// Upload the file
 			key := filepath.Base(filePath)
-			_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
-				Bucket:        &bucketName,
-				Key:           &key,
-				Body:          proxyReader,
-				ContentLength: aws.Int64(fileSize),
-			})
+
+			presignedPutRequest, err := presigner.PutObject(bucketName, key, 60)
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "failed to upload file %q to bucket %q, %v", filePath, bucketName, err)
+				panic(err)
+			}
+
+			uploadReq, err := http.NewRequest("PUT", presignedPutRequest.URL, proxyReader)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to create upload request, %v", err)
 				os.Exit(1)
 			}
+			uploadReq.Header.Set("Content-Type", "application/octet-stream")
+			uploadReq.ContentLength = fileSize
+
+			resp, err := http.DefaultClient.Do(uploadReq)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to upload file using presigned URL, %v", err)
+				os.Exit(1)
+			}
+			defer resp.Body.Close()
 
 			// Wait for the bar to complete
 			p.Wait()
