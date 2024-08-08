@@ -89,7 +89,7 @@ func UploadSnapshotCmd() *cobra.Command {
 			fileSize := fileInfo.Size()
 
 			// Create a progress bar
-			p := mpb.New(mpb.WithWidth(60))
+			p := mpb.New(mpb.WithWidth(60), mpb.WithOutput(os.Stdout), mpb.WithAutoRefresh())
 			bar := p.AddBar(fileSize,
 				mpb.PrependDecorators(
 					decor.Name("Upload progress:"),
