@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 
@@ -65,21 +66,33 @@ func DeleteSnapshotCmd() *cobra.Command {
 			// Create an S3 client
 			client := s3.NewFromConfig(cfg)
 
+			// Create a presigner
+			presignClient := s3.NewPresignClient(client)
+			presigner := types.Presigner{PresignClient: presignClient}
+
 			// Replace '/' with '_' in the branch name
 			safeBranchName := strings.ReplaceAll(branchName, "/", "_")
 
 			// Construct the key for the snapshot file
 			key := fmt.Sprintf("elys-snapshot-%s.tar.lz4", safeBranchName)
 
-			// Delete the file
-			_, err = client.DeleteObject(context.TODO(), &s3.DeleteObjectInput{
-				Bucket: &bucketName,
-				Key:    &key,
-			})
+			presignedDeleteRequest, err := presigner.DeleteObject(bucketName, key)
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "failed to delete file %q from bucket %q, %v", key, bucketName, err)
+				panic(err)
+			}
+
+			delRequest, err := http.NewRequest("DELETE", presignedDeleteRequest.URL, nil)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to create delete request, %v", err)
 				os.Exit(1)
 			}
+
+			resp, err := http.DefaultClient.Do(delRequest)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to delete file %q from bucket %q using presigned URL, %v", key, bucketName, err)
+				os.Exit(1)
+			}
+			defer resp.Body.Close()
 
 			fmt.Printf("Successfully deleted %q from %q\n", key, bucketName)
 		},
