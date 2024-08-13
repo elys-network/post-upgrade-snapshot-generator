@@ -13,11 +13,11 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"assetprofile",
 		"auth",
 		"authz",
-		"bank", // FIXME: causes the init genesis state from genesis.json to OOM (kill process)
+		"bank",
 		"burner",
 		"capability",
 		"clock",
-		// "commitment", // FIXME: causes the balance mismatch error
+		"commitment",
 		"consensus",
 		"crisis",
 		// "distribution", // FIXME: optimize data prior to export as it reached 1.8GB
@@ -26,13 +26,13 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"evidence",
 		"feegrant",
 		"genutil",
-		// "gov", // FIXME: should be re-enabled after gov proposal fixes
+		"gov",
 		"group",
 		"ibc",
 		"incentive",
 		"interchainaccounts",
 		"leveragelp",
-		"masterchef", // FIXME: optimize data prior to export as it reached 2.6GB
+		"masterchef",
 		"perpetual",
 		"oracle",
 		"parameter",
