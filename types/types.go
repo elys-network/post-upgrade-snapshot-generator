@@ -34,6 +34,7 @@ import (
 	parametertypes "github.com/elys-network/elys/x/parameter/types"
 	perpetualtypes "github.com/elys-network/elys/x/perpetual/types"
 	stablestaketypes "github.com/elys-network/elys/x/stablestake/types"
+	tiertypes "github.com/elys-network/elys/x/tier/types"
 	tokenomicstypes "github.com/elys-network/elys/x/tokenomics/types"
 	transferhooktypes "github.com/elys-network/elys/x/transferhook/types"
 
@@ -108,12 +109,20 @@ type AppState struct {
 	Slashing      Slashing                        `json:"slashing"`
 	StableStake   StableStake                     `json:"stablestake"`
 	Staking       Staking                         `json:"staking"`
+	Tier          Tier                            `json:"tier"`
 	Tokenomics    Tokenomics                      `json:"tokenomics"`
 	Transfer      transfertypes.GenesisState      `json:"transfer"`
 	TransferHook  transferhooktypes.GenesisState  `json:"transferhook"`
 	Upgrade       struct{}                        `json:"upgrade"`
 	Wasm          wasmtypes.GenesisState          `json:"wasm"`
 	// Include other fields as needed
+}
+
+type Tier struct {
+	tiertypes.GenesisState
+
+	Params        interface{}   `json:"params"`
+	PortfolioList []interface{} `json:"portfolioList"`
 }
 
 type Masterchef struct {
