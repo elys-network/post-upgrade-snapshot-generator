@@ -17,7 +17,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"burner",
 		"capability",
 		"clock",
-		"commitment",
+		// "commitment", // FIXME: optimize data prior to export
 		"consensus",
 		"crisis",
 		// "distribution", // FIXME: optimize data prior to export as it reached 1.8GB
@@ -40,6 +40,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"poolaccounted",
 		"stablestake",
 		"staking",
+		"tier",
 		"tokenomics",
 		"transfer",
 		"transferhook",
