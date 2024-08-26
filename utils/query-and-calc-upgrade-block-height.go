@@ -21,7 +21,7 @@ func QueryAndCalcUpgradeBlockHeight(cmdPath, node string) string {
 	}
 
 	// set upgrade block height
-	upgradeBlockHeight := blockHeightInt + 20
+	upgradeBlockHeight := blockHeightInt + 25
 
 	// return upgrade block height as a string
 	return strconv.Itoa(upgradeBlockHeight)
