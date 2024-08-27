@@ -27,7 +27,7 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	filterBalanceAddresses := []string{
 		"elys1gpv36nyuw5a92hehea3jqaadss9smsqscr3lrp", // remove existing account 0
 		// "elys173n2866wggue6znwl2vnwx9zqy7nnasjed9ydh",
-		authtypes.NewModuleAddress("distribution").String(),
+		// authtypes.NewModuleAddress("distribution").String(),
 		authtypes.NewModuleAddress("bonded_tokens_pool").String(),
 		authtypes.NewModuleAddress("not_bonded_tokens_pool").String(),
 		authtypes.NewModuleAddress("gov").String(),
@@ -56,16 +56,16 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Auth.Accounts = append(genesis.AppState.Auth.Accounts, genesisInit.AppState.Auth.Accounts...)
 	genesis.AppState.Bank.Balances = append(genesis.AppState.Bank.Balances, genesisInit.AppState.Bank.Balances...)
 
-	distrAddr := authtypes.NewModuleAddress("distribution").String()
+	// distrAddr := authtypes.NewModuleAddress("distribution").String()
 
-	addressDenomMap := map[string][]string{
-		distrAddr: {"ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", "ueden", "uedenb"},
-	}
+	// addressDenomMap := map[string][]string{
+	// 	distrAddr: {"ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", "ueden", "uedenb"},
+	// }
 
-	genesis.AppState.Bank.Balances, coinsToRemove = FilterBalancesByDenoms(genesis.AppState.Bank.Balances, addressDenomMap)
+	// genesis.AppState.Bank.Balances, coinsToRemove = FilterBalancesByDenoms(genesis.AppState.Bank.Balances, addressDenomMap)
 
-	// update supply
-	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Sub(coinsToRemove...)
+	// // update supply
+	// genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Sub(coinsToRemove...)
 
 	// update bank params
 	genesis.AppState.Bank.Params.DefaultSendEnabled = true
