@@ -67,6 +67,8 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	// // update supply
 	// genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Sub(coinsToRemove...)
 
+	// genesis.AppState.Distribution.FeePool.CommunityPool = genesisInit.AppState.Distribution.FeePool.CommunityPool
+
 	// update bank params
 	genesis.AppState.Bank.Params.DefaultSendEnabled = true
 
@@ -82,7 +84,7 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Slashing = genesisInit.AppState.Slashing
 
 	// ColorReset distribution data
-	genesis.AppState.Distribution = genesisInit.AppState.Distribution
+	// genesis.AppState.Distribution = genesisInit.AppState.Distribution
 
 	// set genutil from genesisInit
 	genesis.AppState.Genutil = genesisInit.AppState.Genutil
