@@ -81,11 +81,17 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	// ColorReset slashing data
 	genesis.AppState.Slashing = genesisInit.AppState.Slashing
 
+	// copy community pool data
+	communityPool := genesis.AppState.Distribution.FeePool.CommunityPool
+
 	// ColorReset distribution data
 	genesis.AppState.Distribution = genesisInit.AppState.Distribution
 
 	// temporary fix for distribution params
-	genesis.AppState.Distribution.FeePool.CommunityPool = sdk.NewDecCoins(sdk.NewDecCoin("ueden", sdk.NewInt(163686739754)), sdk.NewDecCoin("uedenb", sdk.NewInt(545619166340)))
+	// genesis.AppState.Distribution.FeePool.CommunityPool = sdk.NewDecCoins(sdk.NewDecCoin("ueden", sdk.NewInt(217787296732)), sdk.NewDecCoin("uedenb", sdk.NewInt(725954333805)))
+	genesis.AppState.Distribution.FeePool.CommunityPool = communityPool
+
+	log.Printf("community pool: %v", genesis.AppState.Distribution.FeePool.CommunityPool)
 
 	// set genutil from genesisInit
 	genesis.AppState.Genutil = genesisInit.AppState.Genutil
