@@ -135,7 +135,7 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Oracle.Params.LifeTimeInBlocks = "8000000"
 
 	// update stablestake
-	genesis.AppState.StableStake = genesisInit.AppState.StableStake
+	// genesis.AppState.StableStake = genesisInit.AppState.StableStake
 
 	// temporary fix
 	// genesis.InitialHeight = "0"
