@@ -11,7 +11,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.1
 	github.com/cosmos/cosmos-sdk v0.47.11
 	github.com/cosmos/ibc-go/v7 v7.4.0
-	github.com/elys-network/elys v0.44.0
+	github.com/elys-network/elys v0.44.1-0.20240905082641-4f2d2c07018e
 	github.com/spf13/cobra v1.8.0
 	github.com/vbauerster/mpb/v8 v8.7.3
 )
