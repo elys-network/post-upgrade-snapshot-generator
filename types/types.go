@@ -195,7 +195,9 @@ type TokenomicsInflationEntry struct {
 type StableStake struct {
 	stablestaketypes.GenesisState
 
-	Params StableStakeParams `json:"params"`
+	Params       StableStakeParams `json:"params"`
+	DebtList     []interface{}     `json:"debt_list"`
+	InterestList []interface{}     `json:"interest_list"`
 }
 
 type StableStakeParams struct {
