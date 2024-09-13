@@ -128,11 +128,24 @@ type Tier struct {
 type Masterchef struct {
 	mastercheftypes.GenesisState
 
+	Params                 MasterchefParams            `json:"params"`
 	ExternalIncentiveIndex json.Number                 `json:"external_incentive_index"`
 	PoolInfos              []MasterchefPoolInfo        `json:"pool_infos"`
 	PoolRewardInfos        []MasterchefPoolRewardInfo  `json:"pool_reward_infos"`
 	UserRewardInfos        []MasterchefUserRewardInfo  `json:"user_reward_infos"`
 	PoolRewardsAccum       []MasterchefPoolRewardAccum `json:"pool_rewards_accum"`
+}
+
+type MasterchefParams struct {
+	mastercheftypes.Params
+
+	LpIncentives *MasterchefIncentiveInfo `json:"lp_incentives"`
+}
+
+type MasterchefIncentiveInfo struct {
+	mastercheftypes.IncentiveInfo
+
+	BlocksDistributed json.Number `json:"blocks_distributed"`
 }
 
 type MasterchefPoolRewardAccum struct {
