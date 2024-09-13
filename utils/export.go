@@ -26,7 +26,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"evidence",
 		"feegrant",
 		"genutil",
-		"gov",
+		// "gov", // FIXME: gov proposals broken
 		"group",
 		"ibc",
 		"incentive",
