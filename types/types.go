@@ -164,6 +164,21 @@ type MasterchefPoolInfo struct {
 
 type Estaking struct {
 	estakingtypes.GenesisState
+
+	Params           EstakingParams `json:"params"`
+	StakingSnapshots []interface{}  `json:"staking_snapshots"`
+}
+
+type EstakingParams struct {
+	estakingtypes.Params
+
+	DexRewardsStakers EstakingDexRewardsTracker `json:"dex_rewards_stakers"`
+}
+
+type EstakingDexRewardsTracker struct {
+	estakingtypes.DexRewardsTracker
+
+	NumBlocks json.Number `json:"num_blocks"`
 }
 
 type Tokenomics struct {
