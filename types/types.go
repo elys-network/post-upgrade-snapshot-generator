@@ -172,7 +172,14 @@ type Estaking struct {
 type EstakingParams struct {
 	estakingtypes.Params
 
+	StakeIncentives   *EstakingIncentiveInfo    `json:"stake_incentives"`
 	DexRewardsStakers EstakingDexRewardsTracker `json:"dex_rewards_stakers"`
+}
+
+type EstakingIncentiveInfo struct {
+	estakingtypes.IncentiveInfo
+
+	BlocksDistributed json.Number `json:"blocks_distributed"`
 }
 
 type EstakingDexRewardsTracker struct {
