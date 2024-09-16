@@ -32,7 +32,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"incentive",
 		"interchainaccounts",
 		"leveragelp",
-		"masterchef",
+		// "masterchef", // FIXME: disable temporarily to attempt to fix the snap gen issue
 		"perpetual",
 		"oracle",
 		"parameter",
