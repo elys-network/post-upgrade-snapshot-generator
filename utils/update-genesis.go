@@ -137,6 +137,9 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	// update stablestake
 	// genesis.AppState.StableStake = genesisInit.AppState.StableStake
 
+	// update masterchef
+	genesis.AppState.Masterchef = genesisInit.AppState.Masterchef
+
 	// temporary fix
 	// genesis.InitialHeight = "0"
 
