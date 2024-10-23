@@ -1432,8 +1432,8 @@ github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e/go.mod h1:/Zj4wYkg
 github.com/elazarl/goproxy v0.0.0-20180725130230-947c36da3153/go.mod h1:/Zj4wYkgs4iZTTu3o/KG3Itv/qCCa8VVMlb3i9OVuzc=
 github.com/elys-network/bandchain-packet v0.0.3-sdk47 h1:W4sP/JOXAoABhsV+ck1NTphLuqpuxGg+uul1nDLbgxk=
 github.com/elys-network/bandchain-packet v0.0.3-sdk47/go.mod h1:/CtU24lu2E4RbPRcZFJfEagwW6TUdFcxv7pX0cYYSgk=
-github.com/elys-network/elys v0.46.0 h1:moehEG3/hCgUG9Q1pmeoGAU6PdqAOx91fgwYHRou2vE=
-github.com/elys-network/elys v0.46.0/go.mod h1:tRqOX2Tv3ex0XmQcrrR1Sqq8JWBsJ7sXZwYFrQAId40=
+github.com/elys-network/elys v0.48.0 h1:PjXqwr8FNDJiQw2hg2bwmZ90tFwSNNfxvgOwiaxVGeE=
+github.com/elys-network/elys v0.48.0/go.mod h1:tRqOX2Tv3ex0XmQcrrR1Sqq8JWBsJ7sXZwYFrQAId40=
 github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633/go.mod h1:otzb+WCGbkyDHkqmQmT5YD2WR4BBwUdeQoFo8l/7tVs=
 github.com/emicklei/go-restful v2.9.5+incompatible/go.mod h1:otzb+WCGbkyDHkqmQmT5YD2WR4BBwUdeQoFo8l/7tVs=
 github.com/emirpasic/gods v1.18.1/go.mod h1:8tpGGwCnJ5H4r6BWwaV6OrWmMoPhUl5jm/FMNAnJvWQ=
