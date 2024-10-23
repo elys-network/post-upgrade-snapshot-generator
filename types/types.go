@@ -80,42 +80,54 @@ type Block struct {
 }
 
 type AppState struct {
-	Amm           Amm                             `json:"amm"`
-	AssetProfile  AssetProfile                    `json:"assetprofile"`
-	Auth          Auth                            `json:"auth"`
-	AuthZ         authz.GenesisState              `json:"authz"`
-	Bank          banktypes.GenesisState          `json:"bank"`
-	Burner        burnertypes.GenesisState        `json:"burner"`
-	Capability    Capability                      `json:"capability"`
-	Clock         Clock                           `json:"clock"`
-	Commitment    Commitment                      `json:"commitment"`
-	Crisis        crisistypes.GenesisState        `json:"crisis"`
-	Distribution  Distribution                    `json:"distribution"`
-	Epochs        Epochs                          `json:"epochs"`
-	Estaking      Estaking                        `json:"estaking"`
-	Evidence      EvidenceState                   `json:"evidence"`
-	Genutil       Genutil                         `json:"genutil"`
-	Gov           Gov                             `json:"gov"`
-	Ibc           Ibc                             `json:"ibc"`
-	Incentive     Incentive                       `json:"incentive"`
-	LeverageLP    LeverageLP                      `json:"leveragelp"`
-	Perpetual     Perpetual                       `json:"perpetual"`
-	Masterchef    Masterchef                      `json:"masterchef"`
-	Mint          Mint                            `json:"mint"`
-	Oracle        Oracle                          `json:"oracle"`
-	Parameter     Parameter                       `json:"parameter"`
-	Params        interface{}                     `json:"params"`
-	PoolAccounted accountedpooltypes.GenesisState `json:"poolaccounted"`
-	Slashing      Slashing                        `json:"slashing"`
-	StableStake   StableStake                     `json:"stablestake"`
-	Staking       Staking                         `json:"staking"`
-	Tier          Tier                            `json:"tier"`
-	Tokenomics    Tokenomics                      `json:"tokenomics"`
-	Transfer      transfertypes.GenesisState      `json:"transfer"`
-	TransferHook  transferhooktypes.GenesisState  `json:"transferhook"`
-	Upgrade       struct{}                        `json:"upgrade"`
-	Wasm          wasmtypes.GenesisState          `json:"wasm"`
+	Amm           Amm                            `json:"amm"`
+	AssetProfile  AssetProfile                   `json:"assetprofile"`
+	Auth          Auth                           `json:"auth"`
+	AuthZ         authz.GenesisState             `json:"authz"`
+	Bank          banktypes.GenesisState         `json:"bank"`
+	Burner        burnertypes.GenesisState       `json:"burner"`
+	Capability    Capability                     `json:"capability"`
+	Clock         Clock                          `json:"clock"`
+	Commitment    Commitment                     `json:"commitment"`
+	Crisis        crisistypes.GenesisState       `json:"crisis"`
+	Distribution  Distribution                   `json:"distribution"`
+	Epochs        Epochs                         `json:"epochs"`
+	Estaking      Estaking                       `json:"estaking"`
+	Evidence      EvidenceState                  `json:"evidence"`
+	Genutil       Genutil                        `json:"genutil"`
+	Gov           Gov                            `json:"gov"`
+	Ibc           Ibc                            `json:"ibc"`
+	Incentive     Incentive                      `json:"incentive"`
+	LeverageLP    LeverageLP                     `json:"leveragelp"`
+	Perpetual     Perpetual                      `json:"perpetual"`
+	Masterchef    Masterchef                     `json:"masterchef"`
+	Mint          Mint                           `json:"mint"`
+	Oracle        Oracle                         `json:"oracle"`
+	Parameter     Parameter                      `json:"parameter"`
+	Params        interface{}                    `json:"params"`
+	PoolAccounted PoolAccounted                  `json:"poolaccounted"`
+	Slashing      Slashing                       `json:"slashing"`
+	StableStake   StableStake                    `json:"stablestake"`
+	Staking       Staking                        `json:"staking"`
+	Tier          Tier                           `json:"tier"`
+	Tokenomics    Tokenomics                     `json:"tokenomics"`
+	Transfer      transfertypes.GenesisState     `json:"transfer"`
+	TransferHook  transferhooktypes.GenesisState `json:"transferhook"`
+	Upgrade       struct{}                       `json:"upgrade"`
+	Wasm          wasmtypes.GenesisState         `json:"wasm"`
 	// Include other fields as needed
+}
+
+type PoolAccounted struct {
+	accountedpooltypes.GenesisState
+
+	AccountedPoolList []AccountedPool `json:"accounted_pool_list"`
+}
+
+type AccountedPool struct {
+	accountedpooltypes.AccountedPool
+
+	PoolId json.Number `json:"pool_id"`
 }
 
 type Tier struct {
