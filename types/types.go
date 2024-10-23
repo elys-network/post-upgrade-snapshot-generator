@@ -532,7 +532,6 @@ type Perpetual struct {
 type PerpetualParams struct {
 	perpetualtypes.Params
 
-	EpochLength      json.Number `json:"epoch_length"`
 	MaxOpenPositions json.Number `json:"max_open_positions"`
 	MaxLimitOrder    json.Number `json:"max_limit_order"`
 }
