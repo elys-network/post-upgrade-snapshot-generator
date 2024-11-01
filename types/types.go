@@ -28,7 +28,6 @@ import (
 	clocktypes "github.com/elys-network/elys/x/clock/types"
 	commitmenttypes "github.com/elys-network/elys/x/commitment/types"
 	epochstypes "github.com/elys-network/elys/x/epochs/types"
-	incentivetypes "github.com/elys-network/elys/x/incentive/types"
 	leveragelptypes "github.com/elys-network/elys/x/leveragelp/types"
 	oracletypes "github.com/elys-network/elys/x/oracle/types"
 	parametertypes "github.com/elys-network/elys/x/parameter/types"
@@ -97,7 +96,6 @@ type AppState struct {
 	Genutil       Genutil                        `json:"genutil"`
 	Gov           Gov                            `json:"gov"`
 	Ibc           Ibc                            `json:"ibc"`
-	Incentive     Incentive                      `json:"incentive"`
 	LeverageLP    LeverageLP                     `json:"leveragelp"`
 	Perpetual     Perpetual                      `json:"perpetual"`
 	Masterchef    Masterchef                     `json:"masterchef"`
@@ -251,10 +249,6 @@ type StableStakeParams struct {
 	stablestaketypes.Params
 
 	EpochLength json.Number `json:"epoch_length"`
-}
-
-type Incentive struct {
-	incentivetypes.GenesisState
 }
 
 type Epochs struct {
