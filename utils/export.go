@@ -29,7 +29,6 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		// "gov", // FIXME: gov proposals broken
 		"group",
 		"ibc",
-		"incentive",
 		"interchainaccounts",
 		"leveragelp",
 		// "masterchef", // FIXME: disable temporarily to attempt to fix the snap gen issue
