@@ -23,12 +23,6 @@ func QueryBlockHeight(cmdPath, node string) (string, error) {
 		return statusOutput.SyncInfo.LatestBlockHeight, nil
 	}
 
-	// If the first unmarshal fails, try unmarshalling into LegacyStatusOutput
-	var legacyStatusOutput types.LegacyStatusOutput
-	if err := json.Unmarshal(output, &legacyStatusOutput); err == nil {
-		return legacyStatusOutput.SyncInfo.LatestBlockHeight, nil
-	}
-
 	// If both attempts fail, return an error
 	return "-1", err
 }
