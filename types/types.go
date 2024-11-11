@@ -576,6 +576,13 @@ type KeyOutput struct {
 	Mnemonic string `json:"mnemonic"`
 }
 
+// LegacyStatusOutput represents the JSON structure of the output from the status command
+type LegacyStatusOutput struct {
+	SyncInfo struct {
+		LatestBlockHeight string `json:"latest_block_height"`
+	} `json:"SyncInfo"`
+}
+
 // StatusOutput represents the JSON structure of the output from the status command
 type StatusOutput struct {
 	SyncInfo struct {
