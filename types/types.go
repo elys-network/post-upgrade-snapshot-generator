@@ -580,7 +580,7 @@ type KeyOutput struct {
 type StatusOutput struct {
 	SyncInfo struct {
 		LatestBlockHeight string `json:"latest_block_height"`
-	} `json:"SyncInfo"`
+	} `json:"sync_info"`
 }
 
 // ProposalsOutput represents the JSON structure of the output from the query proposals command
