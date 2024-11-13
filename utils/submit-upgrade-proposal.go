@@ -10,15 +10,12 @@ import (
 func SubmitUpgradeProposal(cmdPath, name, newVersion, upgradeHeight, homePath, keyringBackend, chainId, node, broadcastMode string) string {
 	// Command and arguments
 	args := []string{
-		"tx",
-		"gov",
-		"submit-legacy-proposal",
-		"software-upgrade",
+		"software-upgrade-tx",
 		newVersion,
-		"--title", newVersion,
-		"--description", newVersion,
-		"--upgrade-height", upgradeHeight,
-		"--no-validate",
+		upgradeHeight,
+		"10000000uelys",
+		newVersion,
+		newVersion,
 		"--from", name,
 		"--keyring-backend", keyringBackend,
 		"--chain-id", chainId,
@@ -26,7 +23,6 @@ func SubmitUpgradeProposal(cmdPath, name, newVersion, upgradeHeight, homePath, k
 		"--broadcast-mode", broadcastMode,
 		"--fees", "1000000uelys",
 		"--gas", "1000000",
-		"--deposit", "10000000uelys",
 		"--home", homePath,
 		"--output", "json",
 		"--yes",
