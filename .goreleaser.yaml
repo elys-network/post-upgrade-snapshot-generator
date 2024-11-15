@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
 project_name: post-upgrade-snapshot-generator
 env:
   - CGO_ENABLED=1
@@ -135,7 +137,7 @@ checksum:
   name_template: "sha256sum.txt"
   algorithm: sha256
 changelog:
-  skip: true
+  disable: true
 release:
   github:
     owner: elys-network
