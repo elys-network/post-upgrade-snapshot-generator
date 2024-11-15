@@ -5,9 +5,6 @@ builds:
   - id: post-upgrade-snapshot-generator-darwin-amd64
     main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
-    hooks:
-      pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /lib/libwasmvmstatic_darwin.a
     env:
       - CC=o64-clang
       - CGO_LDFLAGS=-L/lib
@@ -23,20 +20,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=post-upgrade-snapshot-generator
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
-      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,pebbledb
       - -w -s
       - -linkmode=external
     tags:
       - netgo
       - ledger
-      - static_wasm
       - pebbledb
   - id: post-upgrade-snapshot-generator-darwin-arm64
     main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
-    hooks:
-      pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /lib/libwasmvmstatic_darwin.a
     env:
       - CC=oa64-clang
       - CGO_LDFLAGS=-L/lib
@@ -52,20 +45,16 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=post-upgrade-snapshot-generator
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
-      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,static_wasm,pebbledb
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,pebbledb
       - -w -s
       - -linkmode=external
     tags:
       - netgo
       - ledger
-      - static_wasm
       - pebbledb
   - id: post-upgrade-snapshot-generator-linux-amd64
     main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
-    hooks:
-      pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvm_muslc.x86_64.a -O /usr/lib/x86_64-linux-gnu/libwasmvm_muslc.a
     goos:
       - linux
     goarch:
@@ -80,22 +69,17 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=post-upgrade-snapshot-generator
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
-      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,osusergo,pebbledb
       - -w -s
       - -linkmode=external
-      - -extldflags '-Wl,-z,muldefs -static -lm'
     tags:
       - netgo
       - ledger
-      - muslc
       - osusergo
       - pebbledb
   - id: post-upgrade-snapshot-generator-linux-arm64
     main: ./cmd/main.go
     binary: post-upgrade-snapshot-generator
-    hooks:
-      pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvm_muslc.aarch64.a -O /usr/lib/aarch64-linux-gnu/libwasmvm_muslc.a
     goos:
       - linux
     goarch:
@@ -110,14 +94,12 @@ builds:
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.AppName=post-upgrade-snapshot-generator
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Version=v{{ .Version }}
       - -X github.com/elys-network/post-upgrade-snapshot-generator/version.Commit={{ .Commit }}
-      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,muslc,osusergo,pebbledb
+      - -X github.com/elys-network/post-upgrade-snapshot-generator/version.BuildTags=netgo,ledger,osusergo,pebbledb
       - -w -s
       - -linkmode=external
-      - -extldflags '-Wl,-z,muldefs -static -lm'
     tags:
       - netgo
       - ledger
-      - muslc
       - osusergo
       - pebbledb
 universal_binaries:
