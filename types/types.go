@@ -4,28 +4,26 @@ import (
 	"encoding/json"
 	"time"
 
-	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
+	evidencetypes "cosmossdk.io/x/evidence/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	authz "github.com/cosmos/cosmos-sdk/x/authz"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
 	crisistypes "github.com/cosmos/cosmos-sdk/x/crisis/types"
 	distributiontypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
-	evidencetypes "github.com/cosmos/cosmos-sdk/x/evidence/types"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
+	govv1types "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	transfertypes "github.com/cosmos/ibc-go/v7/modules/apps/transfer/types"
-	ibcclienttypes "github.com/cosmos/ibc-go/v7/modules/core/02-client/types"
-	ibcconnectiontypes "github.com/cosmos/ibc-go/v7/modules/core/03-connection/types"
-	ibcchanneltypes "github.com/cosmos/ibc-go/v7/modules/core/04-channel/types"
-	ibctypes "github.com/cosmos/ibc-go/v7/modules/core/types"
+	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
+	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
+	ibcclienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
+	ibcconnectiontypes "github.com/cosmos/ibc-go/v8/modules/core/03-connection/types"
+	ibcchanneltypes "github.com/cosmos/ibc-go/v8/modules/core/04-channel/types"
+	ibctypes "github.com/cosmos/ibc-go/v8/modules/core/types"
 	accountedpooltypes "github.com/elys-network/elys/x/accountedpool/types"
 	ammtypes "github.com/elys-network/elys/x/amm/types"
 	assetprofiletypes "github.com/elys-network/elys/x/assetprofile/types"
 	burnertypes "github.com/elys-network/elys/x/burner/types"
-	clocktypes "github.com/elys-network/elys/x/clock/types"
 	commitmenttypes "github.com/elys-network/elys/x/commitment/types"
 	epochstypes "github.com/elys-network/elys/x/epochs/types"
 	leveragelptypes "github.com/elys-network/elys/x/leveragelp/types"
@@ -86,7 +84,6 @@ type AppState struct {
 	Bank          banktypes.GenesisState         `json:"bank"`
 	Burner        burnertypes.GenesisState       `json:"burner"`
 	Capability    Capability                     `json:"capability"`
-	Clock         Clock                          `json:"clock"`
 	Commitment    Commitment                     `json:"commitment"`
 	Crisis        crisistypes.GenesisState       `json:"crisis"`
 	Distribution  Distribution                   `json:"distribution"`
@@ -112,7 +109,6 @@ type AppState struct {
 	Transfer      transfertypes.GenesisState     `json:"transfer"`
 	TransferHook  transferhooktypes.GenesisState `json:"transferhook"`
 	Upgrade       struct{}                       `json:"upgrade"`
-	Wasm          wasmtypes.GenesisState         `json:"wasm"`
 	// Include other fields as needed
 }
 
@@ -278,18 +274,6 @@ type CommitmentVestingInfo struct {
 	NumMaxVestings json.Number `json:"num_max_vestings"`
 }
 
-type Clock struct {
-	clocktypes.GenesisState
-
-	Params ClockParams `json:"params"`
-}
-
-type ClockParams struct {
-	clocktypes.Params
-
-	ContractGasLimit json.Number `json:"contract_gas_limit"`
-}
-
 type AssetProfile struct {
 	assetprofiletypes.GenesisState
 
@@ -391,7 +375,7 @@ type MintParams struct {
 }
 
 type Gov struct {
-	govtypes.GenesisState
+	govv1types.GenesisState
 
 	StartingProposalId json.Number      `json:"starting_proposal_id"`
 	Deposits           []interface{}    `json:"deposits"`
@@ -403,20 +387,20 @@ type Gov struct {
 }
 
 type GovParams struct {
-	govtypes.Params
+	govv1types.Params
 
 	MaxDepositPeriod string `json:"max_deposit_period"`
 	VotingPeriod     string `json:"voting_period"`
 }
 
 type GovDepositParams struct {
-	govtypes.DepositParams
+	govv1types.DepositParams
 
 	MaxDepositPeriod string `json:"max_deposit_period"`
 }
 
 type GovVotingParams struct {
-	govtypes.VotingParams
+	govv1types.VotingParams
 
 	VotingPeriod string `json:"voting_period"`
 }

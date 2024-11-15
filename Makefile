@@ -92,7 +92,6 @@ help: Makefile
 .DEFAULT_GOAL := build
 
 GORELEASER_IMAGE := ghcr.io/goreleaser/goreleaser-cross:v$(GO_VERSION)
-COSMWASM_VERSION := $(shell go list -m github.com/CosmWasm/wasmvm | sed 's/.* //')
 
 ## release: Build binaries for all platforms and generate checksums
 ifdef GITHUB_TOKEN
@@ -100,7 +99,6 @@ release:
 	docker run \
 		--rm \
 		-e GITHUB_TOKEN=$(GITHUB_TOKEN) \
-		-e COSMWASM_VERSION=$(COSMWASM_VERSION) \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v `pwd`:/go/src/post-upgrade-snapshot-generator \
 		-w /go/src/post-upgrade-snapshot-generator \
@@ -116,7 +114,6 @@ endif
 release-dry-run:
 	docker run \
 		--rm \
-		-e COSMWASM_VERSION=$(COSMWASM_VERSION) \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v `pwd`:/go/src/post-upgrade-snapshot-generator \
 		-w /go/src/post-upgrade-snapshot-generator \
@@ -129,7 +126,6 @@ release-dry-run:
 release-snapshot:
 	docker run \
 		--rm \
-		-e COSMWASM_VERSION=$(COSMWASM_VERSION) \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v `pwd`:/go/src/post-upgrade-snapshot-generator \
 		-w /go/src/post-upgrade-snapshot-generator \
