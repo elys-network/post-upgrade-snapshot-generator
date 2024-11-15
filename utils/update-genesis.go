@@ -3,6 +3,7 @@ package utils
 import (
 	"log"
 
+	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
@@ -38,7 +39,7 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Auth.Accounts = FilterAccounts(genesis.AppState.Auth.Accounts, filterAccountAddresses)
 	genesis.AppState.Bank.Balances, coinsToRemove = FilterBalances(genesis.AppState.Bank.Balances, filterBalanceAddresses)
 
-	newValidatorBalance, ok := sdk.NewIntFromString(validatorBalance)
+	newValidatorBalance, ok := math.NewIntFromString(validatorBalance)
 	if !ok {
 		panic(types.ColorRed + "invalid number")
 	}
@@ -85,7 +86,7 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Distribution = genesisInit.AppState.Distribution
 
 	// temporary fix for distribution params
-	genesis.AppState.Distribution.FeePool.CommunityPool = sdk.NewDecCoins(sdk.NewDecCoin("ueden", sdk.NewInt(559826739880)), sdk.NewDecCoin("uedenb", sdk.NewInt(1866085077053)))
+	genesis.AppState.Distribution.FeePool.CommunityPool = sdk.NewDecCoins(sdk.NewDecCoin("ueden", math.NewInt(559826739880)), sdk.NewDecCoin("uedenb", math.NewInt(1866085077053)))
 
 	log.Printf("community pool: %v", genesis.AppState.Distribution.FeePool.CommunityPool)
 
@@ -108,17 +109,6 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Gov.VotingParams.VotingPeriod = votingPeriod
 	genesis.AppState.Gov.DepositParams.MaxDepositPeriod = votingPeriod
 	genesis.AppState.Gov.DepositParams.MinDeposit = minDeposit
-
-	// update wasm params
-	// genesis.AppState.Wasm.Params = wasmtypes.DefaultParams()
-	genesis.AppState.Wasm = genesisInit.AppState.Wasm
-
-	// update clock params
-	genesis.AppState.Clock.Params.ContractAddresses = []string{
-		"elys1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqau4f4q",
-		"elys17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9jfksztgw5uh69wac2pgs98tvuy",
-	}
-	genesis.AppState.Clock.Params.ContractGasLimit = "1000000000"
 
 	// update broker address
 	genesis.AppState.Parameter.Params.BrokerAddress = "elys1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqau4f4q"
