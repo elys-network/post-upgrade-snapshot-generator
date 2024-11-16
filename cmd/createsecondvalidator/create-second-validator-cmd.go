@@ -12,6 +12,14 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
 )
 
+// create-second-validator command does the following:
+// 1. download and run old binary
+// 2. start node 1
+// 3. wait for rpc to start
+// 4. wait for next block
+// 5. create validator node 2
+// 6. wait for next block
+// 7. stop old binary
 func CreateSecondValidatorCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "create-second-validator [old_binary_url] [flags]",

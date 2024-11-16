@@ -9,7 +9,7 @@ import (
 
 func GenTx(cmdPath, name, amount, chainId, homePath, keyringBackend string) {
 	// Command and arguments
-	args := []string{"gentx", name, amount + "uelys", "--chain-id", chainId, "--home", homePath, "--keyring-backend", keyringBackend, "--gas", "1000000"}
+	args := []string{"genesis", "gentx", name, amount + "uelys", "--chain-id", chainId, "--home", homePath, "--keyring-backend", keyringBackend, "--gas", "1000000"}
 
 	// Execute the command
 	if err := exec.Command(cmdPath, args...).Run(); err != nil {

@@ -11,6 +11,10 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
 )
 
+// prepare-validator-data command does the following:
+// 1. restore genesis init file
+// 2. copy data from node 1 to node 2
+// 3. generate priv_validator_state.json file for node 2
 func PrepareValidatorDataCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "prepare-validator-data",
