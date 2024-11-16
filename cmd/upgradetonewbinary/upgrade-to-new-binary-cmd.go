@@ -11,6 +11,15 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
 )
 
+// upgrade-to-new-binary command does the following:
+// 1. download and run new binary
+// 2. start node 1 and 2
+// 3. wait for rpc to start
+// 4. wait for next block
+// 5. query upgrade applied
+// 6. unbond validator
+// 7. wait for next block
+// 8. stop new binaries
 func UpgradeToNewBinaryCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "upgrade-to-new-binary [new_binary_url] [flags]",

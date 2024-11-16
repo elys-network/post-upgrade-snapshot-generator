@@ -9,7 +9,7 @@ import (
 
 func CollectGentxs(cmdPath, homePath string) {
 	// Command and arguments
-	args := []string{"collect-gentxs", "--home", homePath}
+	args := []string{"genesis", "collect-gentxs", "--home", homePath}
 
 	// Execute the command
 	if err := exec.Command(cmdPath, args...).Run(); err != nil {

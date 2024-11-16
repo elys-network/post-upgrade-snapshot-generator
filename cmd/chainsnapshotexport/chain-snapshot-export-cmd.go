@@ -11,6 +11,12 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
 )
 
+// chain-snapshot-export command does the following:
+// 1. download and run old binary
+// 2. init nodes
+// 3. update config files to enable api and cors
+// 4. retrieve the snapshot
+// 5. export genesis file
 func ChainSnapshotExportCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "chain-snapshot-export [snapshot_url] [old_binary_url] [flags]",
