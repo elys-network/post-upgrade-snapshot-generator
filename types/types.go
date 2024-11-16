@@ -43,6 +43,7 @@ import (
 type Genesis struct {
 	genutiltypes.AppGenesis
 
+	GenesisTime   string      `json:"genesis_time"`
 	InitialHeight json.Number `json:"initial_height"`
 	AppHash       string      `json:"app_hash"`
 	AppState      AppState    `json:"app_state"`
