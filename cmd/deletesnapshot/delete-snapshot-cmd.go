@@ -17,6 +17,8 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 )
 
+// delete-snapshot command does the following:
+// 1. delete an existing snapshot file from R2 bucket
 func DeleteSnapshotCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delete-snapshot [branch_name] [flags]",

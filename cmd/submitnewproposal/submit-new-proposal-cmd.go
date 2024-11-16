@@ -12,6 +12,16 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
 )
 
+// submit-new-proposal command does the following:
+// 1. download and run old binary
+// 2. download and run new binary
+// 3. start node 1 and 2
+// 4. query and calculate upgrade block height
+// 5. query next proposal id
+// 6. submit upgrade proposal
+// 7. vote on upgrade proposal
+// 8. wait for upgrade block height
+// 9. stop old binaries
 func SubmitNewProposalCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "submit-new-proposal [old_binary_url] [new_binary_url] [flags]",

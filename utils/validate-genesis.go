@@ -9,7 +9,7 @@ import (
 
 func ValidateGenesis(cmdPath, homePath string) {
 	// Command and arguments
-	args := []string{"validate-genesis", "--home", homePath}
+	args := []string{"genesis", "validate-genesis", "--home", homePath}
 
 	// Execute the command
 	if err := exec.Command(cmdPath, args...).Run(); err != nil {

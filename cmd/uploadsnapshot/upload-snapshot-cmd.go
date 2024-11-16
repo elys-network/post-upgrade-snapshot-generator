@@ -19,6 +19,8 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 )
 
+// upload-snapshot command does the following:
+// 1. upload snapshot file to R2
 func UploadSnapshotCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "upload-snapshot [file_path] [flags]",

@@ -11,6 +11,20 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
 )
 
+// chain-init command does the following:
+// 1. download and run old binary
+// 2. init nodes
+// 3. update config files to enable api and cors
+// 4. query node 1 id
+// 5. add peers
+// 6. add validator keys to node 1
+// 7. add validator keys to node 2
+// 8. add genesis accounts
+// 9. generate genesis tx
+// 10. collect genesis txs
+// 11. validate genesis
+// 12. backup genesis init file
+// 13. update genesis
 func ChainInitCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "chain-init [old_binary_url] [flags]",
