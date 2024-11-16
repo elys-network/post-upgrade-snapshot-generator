@@ -43,7 +43,7 @@ import (
 type Genesis struct {
 	GenesisTime     time.Time       `json:"genesis_time"`
 	ChainID         string          `json:"chain_id"`
-	InitialHeight   string          `json:"initial_height"`
+	InitialHeight   json.Number     `json:"initial_height"`
 	ConsensusParams ConsensusParams `json:"consensus_params"`
 	AppHash         string          `json:"app_hash"`
 	AppState        AppState        `json:"app_state"`
