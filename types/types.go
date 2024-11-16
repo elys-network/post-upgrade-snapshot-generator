@@ -473,14 +473,35 @@ type ConnectionGenesisParams struct {
 type ChannelGenesis struct {
 	ibcchanneltypes.GenesisState
 
-	Channels            []interface{} `json:"channels"`
-	Acknowledgements    []interface{} `json:"acknowledgements"`
-	Commitments         []interface{} `json:"commitments"`
-	Receipts            []interface{} `json:"receipts"`
-	SendSequences       []interface{} `json:"send_sequences"`
-	RecvSequences       []interface{} `json:"recv_sequences"`
-	AckSequences        []interface{} `json:"ack_sequences"`
-	NextChannelSequence json.Number   `json:"next_channel_sequence"`
+	Channels            []interface{}        `json:"channels"`
+	Acknowledgements    []interface{}        `json:"acknowledgements"`
+	Commitments         []interface{}        `json:"commitments"`
+	Receipts            []interface{}        `json:"receipts"`
+	SendSequences       []interface{}        `json:"send_sequences"`
+	RecvSequences       []interface{}        `json:"recv_sequences"`
+	AckSequences        []interface{}        `json:"ack_sequences"`
+	NextChannelSequence json.Number          `json:"next_channel_sequence"`
+	Params              ChannelGenesisParams `json:"params"`
+}
+
+type ChannelGenesisParams struct {
+	ibcchanneltypes.Params
+
+	UpgradeTimeout ChannelGenesisTimeout `json:"upgrade_timeout"`
+}
+
+type ChannelGenesisTimeout struct {
+	ibcchanneltypes.Timeout
+
+	Height    ChannelGenesisHeight `json:"height"`
+	Timestamp json.Number          `json:"timestamp"`
+}
+
+type ChannelGenesisHeight struct {
+	ibcclienttypes.Height
+
+	RevisionNumber json.Number `json:"revision_number"`
+	RevisionHeight json.Number `json:"revision_height"`
 }
 
 type LeverageLP struct {
