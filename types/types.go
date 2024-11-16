@@ -389,8 +389,9 @@ type Gov struct {
 type GovParams struct {
 	govv1types.Params
 
-	MaxDepositPeriod string `json:"max_deposit_period"`
-	VotingPeriod     string `json:"voting_period"`
+	MaxDepositPeriod      string `json:"max_deposit_period"`
+	VotingPeriod          string `json:"voting_period"`
+	ExpeditedVotingPeriod string `json:"expedited_voting_period"`
 }
 
 type GovDepositParams struct {
