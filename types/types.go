@@ -2,7 +2,6 @@ package types
 
 import (
 	"encoding/json"
-	"time"
 
 	evidencetypes "cosmossdk.io/x/evidence/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
@@ -35,45 +34,61 @@ import (
 	tokenomicstypes "github.com/elys-network/elys/x/tokenomics/types"
 	transferhooktypes "github.com/elys-network/elys/x/transferhook/types"
 
-	// genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
+	cometbfttypes "github.com/cometbft/cometbft/types"
+	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	estakingtypes "github.com/elys-network/elys/x/estaking/types"
 	mastercheftypes "github.com/elys-network/elys/x/masterchef/types"
 )
 
 type Genesis struct {
-	GenesisTime     time.Time       `json:"genesis_time"`
-	ChainID         string          `json:"chain_id"`
-	InitialHeight   json.Number     `json:"initial_height"`
-	ConsensusParams ConsensusParams `json:"consensus_params"`
-	AppHash         string          `json:"app_hash"`
-	AppState        AppState        `json:"app_state"`
-	// Include other top-level fields as needed
+	genutiltypes.AppGenesis
+
+	InitialHeight json.Number `json:"initial_height"`
+	AppHash       string      `json:"app_hash"`
+	AppState      AppState    `json:"app_state"`
+	Consensus     *Consensus  `json:"consensus"`
+}
+
+type Consensus struct {
+	// genutiltypes.ConsensusGenesis
+
+	Params *ConsensusParams `json:"params"`
 }
 
 type ConsensusParams struct {
-	Version   Version   `json:"version"`
-	Block     Block     `json:"block"`
-	Evidence  Evidence  `json:"evidence"`
-	Validator Validator `json:"validator"`
+	cometbfttypes.ConsensusParams
+
+	Block    BlockParams    `json:"block"`
+	Evidence EvidenceParams `json:"evidence"`
+	Version  VersionParams  `json:"version"`
+	ABCI     ABCIParams     `json:"abci"`
 }
 
-type Version struct {
-	App string `json:"app"`
+type BlockParams struct {
+	cometbfttypes.BlockParams
+
+	MaxBytes json.Number `json:"max_bytes"`
+	MaxGas   json.Number `json:"max_gas"`
 }
 
-type Validator struct {
-	PubKeyTypes []string `json:"pub_key_types"`
+type EvidenceParams struct {
+	cometbfttypes.EvidenceParams
+
+	MaxAgeNumBlocks json.Number `json:"max_age_num_blocks"`
+	MaxAgeDuration  string      `json:"max_age_duration"`
+	MaxBytes        json.Number `json:"max_bytes,omitempty"`
 }
 
-type Evidence struct {
-	MaxAgeNumBlocks string `json:"max_age_num_blocks"`
-	MaxAgeDuration  string `json:"max_age_duration"`
-	MaxBytes        string `json:"max_bytes,omitempty"`
+type VersionParams struct {
+	cometbfttypes.VersionParams
+
+	App json.Number `json:"app"`
 }
 
-type Block struct {
-	MaxBytes string `json:"max_bytes"`
-	MaxGas   string `json:"max_gas"`
+type ABCIParams struct {
+	cometbfttypes.ABCIParams
+
+	VoteExtensionsEnableHeight json.Number `json:"vote_extensions_enable_height"`
 }
 
 type AppState struct {
