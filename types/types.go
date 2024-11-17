@@ -68,28 +68,28 @@ type ConsensusParams struct {
 type BlockParams struct {
 	cometbfttypes.BlockParams
 
-	MaxBytes json.Number `json:"max_bytes"`
-	MaxGas   json.Number `json:"max_gas"`
+	MaxBytes string `json:"max_bytes"`
+	MaxGas   string `json:"max_gas"`
 }
 
 type EvidenceParams struct {
 	cometbfttypes.EvidenceParams
 
-	MaxAgeNumBlocks json.Number `json:"max_age_num_blocks"`
-	MaxAgeDuration  string      `json:"max_age_duration"`
-	MaxBytes        json.Number `json:"max_bytes,omitempty"`
+	MaxAgeNumBlocks string `json:"max_age_num_blocks"`
+	MaxAgeDuration  string `json:"max_age_duration"`
+	MaxBytes        string `json:"max_bytes,omitempty"`
 }
 
 type VersionParams struct {
 	cometbfttypes.VersionParams
 
-	App json.Number `json:"app"`
+	App string `json:"app"`
 }
 
 type ABCIParams struct {
 	cometbfttypes.ABCIParams
 
-	VoteExtensionsEnableHeight json.Number `json:"vote_extensions_enable_height"`
+	VoteExtensionsEnableHeight string `json:"vote_extensions_enable_height"`
 }
 
 type AppState struct {
