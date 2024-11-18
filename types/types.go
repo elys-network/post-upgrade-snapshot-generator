@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	evidencetypes "cosmossdk.io/x/evidence/types"
+	feegranttypes "cosmossdk.io/x/feegrant"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	authz "github.com/cosmos/cosmos-sdk/x/authz"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
@@ -14,6 +15,7 @@ import (
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
+	feeibctypes "github.com/cosmos/ibc-go/v8/modules/apps/29-fee/types"
 	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	ibcclienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
 	ibcconnectiontypes "github.com/cosmos/ibc-go/v8/modules/core/03-connection/types"
@@ -53,7 +55,17 @@ type Genesis struct {
 type Consensus struct {
 	// genutiltypes.ConsensusGenesis
 
+	// Validators []GenesisValidator `json:"validators"`
 	Params *ConsensusParams `json:"params"`
+}
+
+type GenesisValidator struct {
+	cometbfttypes.GenesisValidator
+
+	Address string `json:"address"`
+	PubKey  string `json:"pub_key"`
+	Power   string `json:"power"`
+	Name    string `json:"name"`
 }
 
 type ConsensusParams struct {
@@ -93,39 +105,51 @@ type ABCIParams struct {
 }
 
 type AppState struct {
-	Amm           Amm                            `json:"amm"`
-	AssetProfile  AssetProfile                   `json:"assetprofile"`
-	Auth          Auth                           `json:"auth"`
-	AuthZ         authz.GenesisState             `json:"authz"`
-	Bank          banktypes.GenesisState         `json:"bank"`
-	Burner        burnertypes.GenesisState       `json:"burner"`
-	Capability    Capability                     `json:"capability"`
-	Commitment    Commitment                     `json:"commitment"`
-	Crisis        crisistypes.GenesisState       `json:"crisis"`
-	Distribution  Distribution                   `json:"distribution"`
-	Epochs        Epochs                         `json:"epochs"`
-	Estaking      Estaking                       `json:"estaking"`
-	Evidence      EvidenceState                  `json:"evidence"`
-	Genutil       Genutil                        `json:"genutil"`
-	Gov           Gov                            `json:"gov"`
-	Ibc           Ibc                            `json:"ibc"`
-	LeverageLP    LeverageLP                     `json:"leveragelp"`
-	Perpetual     Perpetual                      `json:"perpetual"`
-	Masterchef    Masterchef                     `json:"masterchef"`
-	Mint          Mint                           `json:"mint"`
-	Oracle        Oracle                         `json:"oracle"`
-	Parameter     Parameter                      `json:"parameter"`
-	Params        interface{}                    `json:"params"`
-	PoolAccounted PoolAccounted                  `json:"poolaccounted"`
-	Slashing      Slashing                       `json:"slashing"`
-	StableStake   StableStake                    `json:"stablestake"`
-	Staking       Staking                        `json:"staking"`
-	Tier          Tier                           `json:"tier"`
-	Tokenomics    Tokenomics                     `json:"tokenomics"`
-	Transfer      transfertypes.GenesisState     `json:"transfer"`
-	TransferHook  transferhooktypes.GenesisState `json:"transferhook"`
-	Upgrade       struct{}                       `json:"upgrade"`
+	Amm                Amm                            `json:"amm"`
+	AssetProfile       AssetProfile                   `json:"assetprofile"`
+	Auth               Auth                           `json:"auth"`
+	AuthZ              authz.GenesisState             `json:"authz"`
+	Bank               banktypes.GenesisState         `json:"bank"`
+	Burner             burnertypes.GenesisState       `json:"burner"`
+	Capability         Capability                     `json:"capability"`
+	Commitment         Commitment                     `json:"commitment"`
+	Crisis             crisistypes.GenesisState       `json:"crisis"`
+	Distribution       Distribution                   `json:"distribution"`
+	Epochs             Epochs                         `json:"epochs"`
+	Estaking           Estaking                       `json:"estaking"`
+	Evidence           EvidenceState                  `json:"evidence"`
+	Feegrant           feegranttypes.GenesisState     `json:"feegrant"`
+	Feeibc             Feeibc                         `json:"feeibc"`
+	Genutil            Genutil                        `json:"genutil"`
+	Gov                Gov                            `json:"gov"`
+	Group              interface{}                    `json:"group"`
+	Ibc                Ibc                            `json:"ibc"`
+	Interchainaccounts interface{}                    `json:"interchainaccounts"`
+	LeverageLP         LeverageLP                     `json:"leveragelp"`
+	Perpetual          Perpetual                      `json:"perpetual"`
+	Masterchef         Masterchef                     `json:"masterchef"`
+	Mint               Mint                           `json:"mint"`
+	Oracle             Oracle                         `json:"oracle"`
+	Parameter          Parameter                      `json:"parameter"`
+	Params             interface{}                    `json:"params"`
+	PoolAccounted      PoolAccounted                  `json:"poolaccounted"`
+	Slashing           Slashing                       `json:"slashing"`
+	StableStake        StableStake                    `json:"stablestake"`
+	Staking            Staking                        `json:"staking"`
+	Tier               Tier                           `json:"tier"`
+	Tokenomics         Tokenomics                     `json:"tokenomics"`
+	Transfer           transfertypes.GenesisState     `json:"transfer"`
+	TransferHook       transferhooktypes.GenesisState `json:"transferhook"`
+	Upgrade            interface{}                    `json:"upgrade"`
+	Vesting            interface{}                    `json:"vesting"`
 	// Include other fields as needed
+}
+
+type Feeibc struct {
+	feeibctypes.GenesisState
+
+	IdentifiedFees  []interface{} `json:"identified_fees"`
+	ForwardRelayers []interface{} `json:"forward_relayers"`
 }
 
 type PoolAccounted struct {
