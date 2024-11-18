@@ -2,24 +2,46 @@ package utils
 
 import (
 	"log"
+	"os"
 	"os/exec"
 
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 )
 
 func CreateValidator(cmdPath, name, selfDelegation, moniker, pubkey, homePath, keyringBackend, chainId, node, broadcastMode string) {
+	// Create a temporary file
+	tmpFile, err := os.CreateTemp("", "validator.json-*")
+	if err != nil {
+		return
+	}
+	tmpFilePath := tmpFile.Name()
+	defer os.Remove(tmpFilePath) // Clean up
+
+	// prepare the validator.json file
+	validatorJSON := `{
+		"pubkey": ` + pubkey + `,
+		"amount": "` + selfDelegation + `uelys",
+		"moniker": "` + moniker + `",
+		"identity": "bob",
+		"website": "https://example.com",
+		"security": "secury@example.com",
+		"details": "details",
+		"commission-rate": "0.05",
+		"commission-max-rate": "0.50",
+		"commission-max-change-rate": "0.01",
+		"min-self-delegation": "1"
+	}`
+	if _, err := tmpFile.Write([]byte(validatorJSON)); err != nil {
+		log.Fatalf(types.ColorRed+"Failed to write to file: %v", err)
+	}
+	tmpFile.Close()
+
 	// Command and arguments
 	args := []string{
 		"tx",
 		"staking",
 		"create-validator",
-		"--amount", selfDelegation + "uelys",
-		"--pubkey", pubkey,
-		"--moniker", moniker,
-		"--commission-rate", "0.05",
-		"--commission-max-rate", "0.50",
-		"--commission-max-change-rate", "0.01",
-		"--min-self-delegation", "1",
+		tmpFilePath,
 		"--from", name,
 		"--keyring-backend", keyringBackend,
 		"--chain-id", chainId,

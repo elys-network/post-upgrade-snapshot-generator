@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
@@ -24,7 +23,7 @@ func DownloadAndRunVersion(binaryPathOrURL string, skipDownload bool) (path stri
 
 		// Check if the path exists
 		if _, err = os.Stat(path); os.IsNotExist(err) {
-			err = errors.New(fmt.Sprintf("binary file does not exist at the specified path: %v", path))
+			err = fmt.Errorf("binary file does not exist at the specified path: %v", path)
 			return
 		}
 
@@ -55,7 +54,7 @@ func DownloadAndRunVersion(binaryPathOrURL string, skipDownload bool) (path stri
 
 		// Check if the path exists
 		if _, err = os.Stat(path); os.IsNotExist(err) {
-			err = errors.New(fmt.Sprintf("binary file does not exist at the specified path: %v", path))
+			err = fmt.Errorf("binary file does not exist at the specified path: %v", path)
 		}
 
 		return
@@ -69,7 +68,7 @@ func DownloadAndRunVersion(binaryPathOrURL string, skipDownload bool) (path stri
 	defer resp.Body.Close()
 
 	// Create a temporary file
-	tmpFile, err := ioutil.TempFile("", "binary-*")
+	tmpFile, err := os.CreateTemp("", "binary-*")
 	if err != nil {
 		return
 	}
