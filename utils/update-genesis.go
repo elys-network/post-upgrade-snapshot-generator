@@ -48,10 +48,18 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Sub(coinsToRemove...)
 
 	// add node 1 supply
-	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Add(sdk.NewCoin("uelys", newValidatorBalance)).Add(sdk.NewCoin("ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", newValidatorBalance)).Add(sdk.NewCoin("ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4", newValidatorBalance)).Add(sdk.NewCoin("ibc/B4314D0E670CB43C88A5DCA09F76E5E812BD831CC2FEC6E434C9E5A9D1F57953", newValidatorBalance))
+	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.
+		Add(sdk.NewCoin("uelys", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/B4314D0E670CB43C88A5DCA09F76E5E812BD831CC2FEC6E434C9E5A9D1F57953", newValidatorBalance))
 
 	// add node 2 supply
-	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Add(sdk.NewCoin("uelys", newValidatorBalance)).Add(sdk.NewCoin("ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", newValidatorBalance)).Add(sdk.NewCoin("ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4", newValidatorBalance)).Add(sdk.NewCoin("ibc/B4314D0E670CB43C88A5DCA09F76E5E812BD831CC2FEC6E434C9E5A9D1F57953", newValidatorBalance))
+	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.
+		Add(sdk.NewCoin("uelys", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/B4314D0E670CB43C88A5DCA09F76E5E812BD831CC2FEC6E434C9E5A9D1F57953", newValidatorBalance))
 
 	// Add new validator account and balance
 	genesis.AppState.Auth.Accounts = append(genesis.AppState.Auth.Accounts, genesisInit.AppState.Auth.Accounts...)
@@ -86,7 +94,10 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Distribution = genesisInit.AppState.Distribution
 
 	// temporary fix for distribution params
-	genesis.AppState.Distribution.FeePool.CommunityPool = sdk.NewDecCoins(sdk.NewDecCoin("ueden", math.NewInt(595021147500)), sdk.NewDecCoin("uedenb", math.NewInt(1983399876344)))
+	genesis.AppState.Distribution.FeePool.CommunityPool = sdk.NewDecCoins(
+		sdk.NewDecCoin("ueden", math.NewInt(595021147500)),
+		sdk.NewDecCoin("uedenb", math.NewInt(1983399876344)),
+	)
 
 	log.Printf("community pool: %v", genesis.AppState.Distribution.FeePool.CommunityPool)
 
@@ -129,9 +140,6 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 
 	// update masterchef
 	genesis.AppState.Masterchef = genesisInit.AppState.Masterchef
-
-	// temporary fix
-	// genesis.InitialHeight = "0"
 
 	outputFilePath := homePath + "/config/genesis.json"
 	if err := WriteGenesisFile(outputFilePath, genesis); err != nil {
