@@ -5,15 +5,17 @@ go 1.22.6
 require (
 	cosmossdk.io/math v1.3.0
 	cosmossdk.io/x/evidence v0.1.1
+	cosmossdk.io/x/feegrant v0.1.1
 	github.com/aws/aws-sdk-go v1.44.224
 	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.11
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.11
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.1
+	github.com/cometbft/cometbft v0.38.12
 	github.com/cosmos/cosmos-sdk v0.50.9
 	github.com/cosmos/ibc-go/modules/capability v1.0.1
 	github.com/cosmos/ibc-go/v8 v8.5.1
-	github.com/elys-network/elys v0.50.1-0.20241115234042-5637f423a39c
+	github.com/elys-network/elys v0.51.0
 	github.com/spf13/cobra v1.8.1
 	github.com/vbauerster/mpb/v8 v8.8.3
 )
@@ -35,7 +37,6 @@ require (
 	cosmossdk.io/simapp v0.0.0-20240118210941-3897926e722e // indirect
 	cosmossdk.io/store v1.1.1 // indirect
 	cosmossdk.io/tools/confix v0.1.2 // indirect
-	cosmossdk.io/x/feegrant v0.1.1 // indirect
 	cosmossdk.io/x/tx v0.13.5 // indirect
 	cosmossdk.io/x/upgrade v0.1.4 // indirect
 	github.com/DataDog/datadog-go v3.2.0+incompatible // indirect
@@ -67,7 +68,6 @@ require (
 	github.com/cockroachdb/pebble v1.1.1 // indirect
 	github.com/cockroachdb/redact v1.1.5 // indirect
 	github.com/cockroachdb/tokenbucket v0.0.0-20230807174530-cc333fc44b06 // indirect
-	github.com/cometbft/cometbft v0.38.12 // indirect
 	github.com/cometbft/cometbft-db v0.12.0 // indirect
 	github.com/cosmos/cosmos-db v1.0.2 // indirect
 	github.com/cosmos/gogogateway v1.2.0 // indirect
