@@ -3,7 +3,7 @@ module github.com/elys-network/post-upgrade-snapshot-generator
 go 1.22.6
 
 require (
-	cosmossdk.io/math v1.3.0
+	cosmossdk.io/math v1.4.0
 	cosmossdk.io/x/evidence v0.1.1
 	cosmossdk.io/x/feegrant v0.1.1
 	github.com/aws/aws-sdk-go v1.44.224
