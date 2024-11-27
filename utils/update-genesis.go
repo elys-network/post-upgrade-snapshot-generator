@@ -121,9 +121,6 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Gov.DepositParams.MaxDepositPeriod = votingPeriod
 	genesis.AppState.Gov.DepositParams.MinDeposit = minDeposit
 
-	// update broker address
-	genesis.AppState.Parameter.Params.BrokerAddress = "elys1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqau4f4q"
-
 	// temporary fix for oracle
 	// genesis.AppState.Oracle.Params = genesisInit.AppState.Oracle.Params
 	// genesis.AppState.Oracle.PortId = genesisInit.AppState.Oracle.PortId
