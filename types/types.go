@@ -34,6 +34,7 @@ import (
 	stablestaketypes "github.com/elys-network/elys/x/stablestake/types"
 	tiertypes "github.com/elys-network/elys/x/tier/types"
 	tokenomicstypes "github.com/elys-network/elys/x/tokenomics/types"
+	tradeshieldtypes "github.com/elys-network/elys/x/tradeshield/types"
 	transferhooktypes "github.com/elys-network/elys/x/transferhook/types"
 
 	cometbfttypes "github.com/cometbft/cometbft/types"
@@ -126,23 +127,40 @@ type AppState struct {
 	Ibc                Ibc                            `json:"ibc"`
 	Interchainaccounts interface{}                    `json:"interchainaccounts"`
 	LeverageLP         LeverageLP                     `json:"leveragelp"`
-	Perpetual          Perpetual                      `json:"perpetual"`
 	Masterchef         Masterchef                     `json:"masterchef"`
 	Mint               Mint                           `json:"mint"`
 	Oracle             Oracle                         `json:"oracle"`
 	Parameter          Parameter                      `json:"parameter"`
 	Params             interface{}                    `json:"params"`
+	Perpetual          Perpetual                      `json:"perpetual"`
 	PoolAccounted      PoolAccounted                  `json:"poolaccounted"`
 	Slashing           Slashing                       `json:"slashing"`
 	StableStake        StableStake                    `json:"stablestake"`
 	Staking            Staking                        `json:"staking"`
 	Tier               Tier                           `json:"tier"`
 	Tokenomics         Tokenomics                     `json:"tokenomics"`
+	Tradeshield        Tradeshield                    `json:"tradeshield"`
 	Transfer           transfertypes.GenesisState     `json:"transfer"`
 	TransferHook       transferhooktypes.GenesisState `json:"transferhook"`
 	Upgrade            interface{}                    `json:"upgrade"`
 	Vesting            interface{}                    `json:"vesting"`
 	// Include other fields as needed
+}
+
+type Tradeshield struct {
+	tradeshieldtypes.GenesisState
+
+	Params                     TradeshieldParams `json:"params"`
+	PendingSpotOrderList       []interface{}     `json:"pending_spot_order_list"`
+	PendingSpotOrderCount      json.Number       `json:"pending_spot_order_count"`
+	PendingPerpetualOrderList  []interface{}     `json:"pending_perpetual_order_list"`
+	PendingPerpetualOrderCount json.Number       `json:"pending_perpetual_order_count"`
+}
+
+type TradeshieldParams struct {
+	tradeshieldtypes.Params
+
+	LimitProcessOrder json.Number `json:"limit_process_order"`
 }
 
 type Feeibc struct {
