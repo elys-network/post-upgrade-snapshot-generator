@@ -95,8 +95,8 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 
 	// temporary fix for distribution params
 	genesis.AppState.Distribution.FeePool.CommunityPool = sdk.NewDecCoins(
-		sdk.NewDecCoin("ueden", math.NewInt(239698754669)),
-		sdk.NewDecCoin("uedenb", math.NewInt(799474423027)),
+		sdk.NewDecCoin("ueden", math.NewInt(236702644840)),
+		sdk.NewDecCoin("uedenb", math.NewInt(815769104404)),
 	)
 
 	log.Printf("community pool: %v", genesis.AppState.Distribution.FeePool.CommunityPool)
