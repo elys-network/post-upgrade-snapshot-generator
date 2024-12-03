@@ -38,7 +38,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"poolaccounted",
 		"stablestake",
 		"staking",
-		"tier",
+		// "tier", // FIXME: disable temporarily to attempt to fix the invalid memory issue
 		"tokenomics",
 		"tradeshield",
 		"transfer",
