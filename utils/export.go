@@ -21,7 +21,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"crisis",
 		// "distribution", // FIXME: optimize data prior to export as it reached 1.8GB
 		"epochs",
-		"estaking",
+		// "estaking", // FIXME: disable temporarily to attempt to fix the cannot set negative reference count panic error
 		"evidence",
 		"feegrant",
 		"genutil",
