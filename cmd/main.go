@@ -9,6 +9,7 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/cmd/chaininit"
 	"github.com/elys-network/post-upgrade-snapshot-generator/cmd/chainsnapshotexport"
 	"github.com/elys-network/post-upgrade-snapshot-generator/cmd/createsecondvalidator"
+	"github.com/elys-network/post-upgrade-snapshot-generator/cmd/createsnapshot"
 	"github.com/elys-network/post-upgrade-snapshot-generator/cmd/deletesnapshot"
 	"github.com/elys-network/post-upgrade-snapshot-generator/cmd/preparevalidatordata"
 	"github.com/elys-network/post-upgrade-snapshot-generator/cmd/submitnewproposal"
@@ -25,8 +26,8 @@ func main() {
 		Short: "Upgrade Assure is a tool for running a chain from a snapshot and to test out the upgrade process.",
 		Long:  `A tool for running a chain from a snapshot.`,
 		Run: func(cmd *cobra.Command, args []string) {
-			// ask to use a sub command
-			log.Fatalf(types.ColorRed + "Please use a sub command (e.g. chain-init, create-second-validator, etc.)\nGet help with 'upgrade-assure --help'")
+			cmd.Help()
+			os.Exit(1)
 		},
 	}
 
@@ -78,6 +79,7 @@ func main() {
 	rootCmd.AddCommand(upgradetonewbinary.UpgradeToNewBinaryCmd())
 	rootCmd.AddCommand(uploadsnapshot.UploadSnapshotCmd())
 	rootCmd.AddCommand(deletesnapshot.DeleteSnapshotCmd())
+	rootCmd.AddCommand(createsnapshot.CreateSnapshotCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatalf(types.ColorRed+"Error executing command: %v", err)

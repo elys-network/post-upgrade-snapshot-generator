@@ -16,21 +16,22 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"bank",
 		"burner",
 		"capability",
-		"commitment", // FIXME: optimize data prior to export
+		"ccvconsumer",
+		"commitment",
 		"consensus",
 		"crisis",
-		// "distribution", // FIXME: optimize data prior to export as it reached 1.8GB
+		"distribution",
 		"epochs",
-		// "estaking", // FIXME: disable temporarily to attempt to fix the cannot set negative reference count panic error
+		"estaking",
 		"evidence",
 		"feegrant",
 		"genutil",
-		// "gov", // FIXME: gov proposals broken
+		"gov",
 		"group",
 		"ibc",
 		"interchainaccounts",
 		"leveragelp",
-		// "masterchef", // FIXME: disable temporarily to attempt to fix the snap gen issue
+		"masterchef",
 		"oracle",
 		"parameter",
 		"params",
@@ -38,7 +39,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"poolaccounted",
 		"stablestake",
 		"staking",
-		// "tier", // FIXME: disable temporarily to attempt to fix the invalid memory issue
+		"tier",
 		"tokenomics",
 		"tradeshield",
 		"transfer",
