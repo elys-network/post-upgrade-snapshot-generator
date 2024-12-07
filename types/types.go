@@ -114,6 +114,7 @@ type AppState struct {
 	Burner             burnertypes.GenesisState       `json:"burner"`
 	Capability         Capability                     `json:"capability"`
 	Commitment         Commitment                     `json:"commitment"`
+	Ccvconsumer        interface{}                    `json:"ccvconsumer"`
 	Crisis             crisistypes.GenesisState       `json:"crisis"`
 	Distribution       Distribution                   `json:"distribution"`
 	Epochs             Epochs                         `json:"epochs"`
