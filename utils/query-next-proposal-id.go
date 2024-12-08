@@ -11,7 +11,7 @@ import (
 
 func QueryNextProposalId(cmdPath, node string) (string, error) {
 	// Command and arguments
-	args := []string{"q", "gov", "proposals", "--node", node, "--limit", "1", "--reverse", "--output", "json"}
+	args := []string{"q", "gov", "proposals", "--node", node, "--page-limit", "1", "--page-reverse", "--output", "json"}
 
 	// Execute the command
 	output, err := exec.Command(cmdPath, args...).CombinedOutput()
