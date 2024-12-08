@@ -38,7 +38,7 @@ func main() {
 	rootCmd.PersistentFlags().Bool(flags.FlagSkipProposal, false, "skip proposal")
 	rootCmd.PersistentFlags().Bool(flags.FlagSkipBinary, false, "skip binary download")
 	rootCmd.PersistentFlags().Bool(flags.FlagSkipUnbondValidator, false, "skip unbond validator")
-	rootCmd.PersistentFlags().String(flags.FlagChainId, "elystestnet-1", "chain id")
+	rootCmd.PersistentFlags().String(flags.FlagChainId, "elysicstestnet-1", "chain id")
 	rootCmd.PersistentFlags().String(flags.FlagKeyringBackend, "test", "keyring backend")
 	rootCmd.PersistentFlags().String(flags.FlagGenesisFilePath, "/tmp/genesis.json", "genesis file path")
 	rootCmd.PersistentFlags().String(flags.FlagBroadcastMode, "sync", "broadcast mode")
