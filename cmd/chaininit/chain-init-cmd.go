@@ -215,7 +215,7 @@ func ChainInitCmd() *cobra.Command {
 			utils.BackupGenesisInitFile(homePath)
 
 			// update genesis
-			utils.UpdateGenesis(validatorBalance, homePath, genesisFilePath)
+			utils.UpdateGenesis(validatorBalance, oldBinaryPath, homePath, genesisFilePath)
 		},
 	}
 
