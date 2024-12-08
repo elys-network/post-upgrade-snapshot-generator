@@ -2,6 +2,7 @@ package types
 
 import (
 	"encoding/json"
+	"time"
 
 	evidencetypes "cosmossdk.io/x/evidence/types"
 	feegranttypes "cosmossdk.io/x/feegrant"
@@ -38,6 +39,7 @@ import (
 	transferhooktypes "github.com/elys-network/elys/x/transferhook/types"
 
 	cometbfttypes "github.com/cometbft/cometbft/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	estakingtypes "github.com/elys-network/elys/x/estaking/types"
 	mastercheftypes "github.com/elys-network/elys/x/masterchef/types"
@@ -250,20 +252,13 @@ type Estaking struct {
 type EstakingParams struct {
 	estakingtypes.Params
 
-	StakeIncentives   *EstakingIncentiveInfo    `json:"stake_incentives"`
-	DexRewardsStakers EstakingDexRewardsTracker `json:"dex_rewards_stakers"`
+	StakeIncentives *EstakingIncentiveInfo `json:"stake_incentives"`
 }
 
 type EstakingIncentiveInfo struct {
 	estakingtypes.IncentiveInfo
 
 	BlocksDistributed json.Number `json:"blocks_distributed"`
-}
-
-type EstakingDexRewardsTracker struct {
-	estakingtypes.DexRewardsTracker
-
-	NumBlocks json.Number `json:"num_blocks"`
 }
 
 type Tokenomics struct {
@@ -410,8 +405,26 @@ type Slashing struct {
 	slashingtypes.GenesisState
 
 	Params       SlashingParams `json:"params"`
-	SigningInfos []interface{}  `json:"signing_infos"`
+	SigningInfos []SigningInfo  `json:"signing_infos"`
 	MissedBlocks []interface{}  `json:"missed_blocks"`
+}
+
+type SigningInfo struct {
+	// slashingtypes.SigningInfo
+
+	Address              string               `json:"address"`
+	ValidatorSigningInfo ValidatorSigningInfo `json:"validator_signing_info"`
+}
+
+type ValidatorSigningInfo struct {
+	// slashingtypes.ValidatorSigningInfo
+
+	Address             string      `json:"address"`
+	StartHeight         json.Number `json:"start_height"`
+	IndexOffset         json.Number `json:"index_offset"`
+	JailedUntil         time.Time   `json:"jailed_until"`
+	Tombstoned          bool        `json:"tombstoned"`
+	MissedBlocksCounter json.Number `json:"missed_blocks_counter"`
 }
 
 type SlashingParams struct {
@@ -621,6 +634,7 @@ type ModuleAccount struct {
 type Account struct {
 	*BaseAccount
 	*ModuleAccount
+	*PeriodicVestingAccount
 
 	Type string `json:"@type"`
 }
@@ -630,6 +644,25 @@ type Auth struct {
 
 	Params   AuthParams `json:"params"`
 	Accounts []Account  `json:"accounts"`
+}
+
+type PeriodicVestingAccount struct {
+	BaseVestingAccount BaseVestingAccount `json:"base_vesting_account"`
+	StartTime          json.Number        `json:"start_time"`
+	VestingPeriods     []VestingPeriod    `json:"vesting_periods"`
+}
+
+type BaseVestingAccount struct {
+	BaseAccount      BaseAccount `json:"base_account"`
+	OriginalVesting  []sdk.Coin  `json:"original_vesting"`
+	DelegatedFree    []sdk.Coin  `json:"delegated_free"`
+	DelegatedVesting []sdk.Coin  `json:"delegated_vesting"`
+	EndTime          json.Number `json:"end_time"`
+}
+
+type VestingPeriod struct {
+	Length json.Number `json:"length"`
+	Amount []sdk.Coin  `json:"amount"`
 }
 
 // KeyOutput represents the JSON structure of the output from the add key command
