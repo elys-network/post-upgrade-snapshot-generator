@@ -9,15 +9,15 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 )
 
-func GetValidatorConsensusAddress() string {
+func GetValidatorConsensusAddress(cmdPath string) string {
 	// retrieve cons address:
-	cmd := exec.Command("elysd", "tendermint", "show-validator")
+	cmd := exec.Command(cmdPath, "cometbft", "show-validator")
 	validatorPubkey, err := cmd.Output()
 	if err != nil {
 		log.Fatalf(types.ColorRed+"Error getting validator pubkey: %v", err)
 	}
 
-	cmd = exec.Command("elysd", "debug", "pubkey", strings.TrimSpace(string(validatorPubkey)))
+	cmd = exec.Command(cmdPath, "debug", "pubkey", strings.TrimSpace(string(validatorPubkey)))
 	pubkeyOutput, err := cmd.Output()
 	if err != nil {
 		log.Fatalf(types.ColorRed+"Error getting validator address: %v", err)
@@ -32,7 +32,7 @@ func GetValidatorConsensusAddress() string {
 	validatorAddress := matches[1]
 
 	// Get consensus address
-	cmd = exec.Command("elysd", "debug", "addr", validatorAddress)
+	cmd = exec.Command(cmdPath, "debug", "addr", validatorAddress)
 	addrOutput, err := cmd.Output()
 	if err != nil {
 		log.Fatalf(types.ColorRed+"Error getting consensus address: %v", err)

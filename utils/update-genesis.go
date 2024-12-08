@@ -11,7 +11,7 @@ import (
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 )
 
-func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
+func UpdateGenesis(validatorBalance, cmdPath, homePath, genesisFilePath string) {
 	genesis, err := ReadGenesisFile(genesisFilePath)
 	if err != nil {
 		log.Fatalf(types.ColorRed+"Error reading genesis file: %v", err)
@@ -49,16 +49,14 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	// add node 1 supply
 	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.
 		Add(sdk.NewCoin("uelys", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/B4314D0E670CB43C88A5DCA09F76E5E812BD831CC2FEC6E434C9E5A9D1F57953", newValidatorBalance))
+		Add(sdk.NewCoin("ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9", newValidatorBalance))
 
 	// add node 2 supply
 	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.
 		Add(sdk.NewCoin("uelys", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/B4314D0E670CB43C88A5DCA09F76E5E812BD831CC2FEC6E434C9E5A9D1F57953", newValidatorBalance))
+		Add(sdk.NewCoin("ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349", newValidatorBalance)).
+		Add(sdk.NewCoin("ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9", newValidatorBalance))
 
 	// Add new validator account and balance
 	genesis.AppState.Auth.Accounts = append(genesis.AppState.Auth.Accounts, genesisInit.AppState.Auth.Accounts...)
@@ -79,7 +77,7 @@ func UpdateGenesis(validatorBalance, homePath, genesisFilePath string) {
 	genesis.AppState.Slashing = genesisInit.AppState.Slashing
 
 	// Add validator signing info to genesis
-	validatorConsAddr := GetValidatorConsensusAddress()
+	validatorConsAddr := GetValidatorConsensusAddress(cmdPath)
 	validatorSigningInfo := types.ValidatorSigningInfo{
 		Address:             validatorConsAddr,
 		StartHeight:         json.Number("0"),
