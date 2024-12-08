@@ -31,6 +31,12 @@ func (a *Account) UnmarshalJSON(data []byte) error {
 			return err
 		}
 		a.ModuleAccount = &ma
+	case "/cosmos.vesting.v1beta1.PeriodicVestingAccount":
+		var pva PeriodicVestingAccount
+		if err := json.Unmarshal(data, &pva); err != nil {
+			return err
+		}
+		a.PeriodicVestingAccount = &pva
 	default:
 		return fmt.Errorf("unknown account type: %s", a.Type)
 	}
