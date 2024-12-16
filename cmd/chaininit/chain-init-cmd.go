@@ -77,11 +77,6 @@ func ChainInitCmd() *cobra.Command {
 				log.Fatalf(types.ColorRed + "validator key name is required")
 			}
 
-			validatorBalance, _ := cmd.Flags().GetString(flags.FlagValidatorBalance)
-			if validatorBalance == "" {
-				log.Fatalf(types.ColorRed + "validator balance is required")
-			}
-
 			validatorSelfDelegation, _ := cmd.Flags().GetString(flags.FlagValidatorSelfDelegation)
 			if validatorSelfDelegation == "" {
 				log.Fatalf(types.ColorRed + "validator self delegation is required")
@@ -128,11 +123,6 @@ func ChainInitCmd() *cobra.Command {
 				log.Fatalf(types.ColorRed + "validator key name 2 is required")
 			}
 
-			validatorBalance2, _ := cmd.Flags().GetString(flags.FlagValidatorBalance2)
-			if validatorBalance2 == "" {
-				log.Fatalf(types.ColorRed + "validator balance 2 is required")
-			}
-
 			validatorSelfDelegation2, _ := cmd.Flags().GetString(flags.FlagValidatorSelfDelegation2)
 			if validatorSelfDelegation2 == "" {
 				log.Fatalf(types.ColorRed + "validator self delegation 2 is required")
@@ -161,6 +151,11 @@ func ChainInitCmd() *cobra.Command {
 			api2, _ := cmd.Flags().GetString(flags.FlagApi2)
 			if api2 == "" {
 				log.Fatalf(types.ColorRed + "api 2 is required")
+			}
+
+			validatorBalances, _ := cmd.Flags().GetStringSlice(flags.FlagValidatorBalances)
+			if len(validatorBalances) == 0 {
+				log.Fatalf(types.ColorRed + "validator balances are required")
 			}
 
 			// download and run old binary
@@ -199,8 +194,8 @@ func ChainInitCmd() *cobra.Command {
 			_ = utils.AddKey(oldBinaryPath, validatorKeyName2, validatorMnemonic2, homePath2, keyringBackend)
 
 			// add genesis accounts
-			utils.AddGenesisAccount(oldBinaryPath, validatorAddress, validatorBalance, homePath)
-			utils.AddGenesisAccount(oldBinaryPath, validatorAddress2, validatorBalance2, homePath)
+			utils.AddGenesisAccount(oldBinaryPath, validatorAddress, homePath, validatorBalances)
+			utils.AddGenesisAccount(oldBinaryPath, validatorAddress2, homePath, validatorBalances)
 
 			// generate genesis tx
 			utils.GenTx(oldBinaryPath, validatorKeyName, validatorSelfDelegation, chainId, homePath, keyringBackend)
@@ -215,7 +210,7 @@ func ChainInitCmd() *cobra.Command {
 			utils.BackupGenesisInitFile(homePath)
 
 			// update genesis
-			utils.UpdateGenesis(validatorBalance, oldBinaryPath, homePath, genesisFilePath)
+			utils.UpdateGenesis(oldBinaryPath, homePath, genesisFilePath, validatorBalances, validatorAddress)
 		},
 	}
 

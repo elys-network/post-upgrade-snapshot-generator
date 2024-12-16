@@ -8,10 +8,12 @@ import (
 	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
+	assetprofiletypes "github.com/elys-network/elys/x/assetprofile/types"
+	oracletypes "github.com/elys-network/elys/x/oracle/types"
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 )
 
-func UpdateGenesis(validatorBalance, cmdPath, homePath, genesisFilePath string) {
+func UpdateGenesis(cmdPath, homePath, genesisFilePath string, balances []string, validatorAddress string) {
 	genesis, err := ReadGenesisFile(genesisFilePath)
 	if err != nil {
 		log.Fatalf(types.ColorRed+"Error reading genesis file: %v", err)
@@ -38,25 +40,21 @@ func UpdateGenesis(validatorBalance, cmdPath, homePath, genesisFilePath string) 
 	genesis.AppState.Auth.Accounts = FilterAccounts(genesis.AppState.Auth.Accounts, filterAccountAddresses)
 	genesis.AppState.Bank.Balances, coinsToRemove = FilterBalances(genesis.AppState.Bank.Balances, filterBalanceAddresses)
 
-	newValidatorBalance, ok := math.NewIntFromString(validatorBalance)
-	if !ok {
-		panic(types.ColorRed + "invalid number")
-	}
-
 	// update supply
 	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Sub(coinsToRemove...)
 
-	// add node 1 supply
-	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.
-		Add(sdk.NewCoin("uelys", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9", newValidatorBalance))
+	// Parse balances and add to supply for both validators
+	for _, balance := range balances {
+		coin, err := sdk.ParseCoinNormalized(balance)
+		if err != nil {
+			log.Fatalf(types.ColorRed+"Error parsing balance %s: %v", balance, err)
+		}
 
-	// add node 2 supply
-	genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.
-		Add(sdk.NewCoin("uelys", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349", newValidatorBalance)).
-		Add(sdk.NewCoin("ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9", newValidatorBalance))
+		// add node 1 supply
+		genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Add(coin)
+		// add node 2 supply
+		genesis.AppState.Bank.Supply = genesis.AppState.Bank.Supply.Add(coin)
+	}
 
 	// Add new validator account and balance
 	genesis.AppState.Auth.Accounts = append(genesis.AppState.Auth.Accounts, genesisInit.AppState.Auth.Accounts...)
@@ -116,6 +114,96 @@ func UpdateGenesis(validatorBalance, cmdPath, homePath, genesisFilePath string) 
 
 	// update ccvconsumer
 	genesis.AppState.Ccvconsumer = genesisInit.AppState.Ccvconsumer
+
+	// update assetprofile and oracle to add both eth and wbtc
+	wbtc := &types.AssetProfileEntry{
+		Entry: assetprofiletypes.Entry{
+			Denom:           "wbtc-satoshi",
+			BaseDenom:       "wbtc-satoshi",
+			DisplaySymbol:   "wbtc",
+			DisplayName:     "Wrapped Bitcoin",
+			UnitDenom:       "wbtc",
+			CommitEnabled:   true,
+			WithdrawEnabled: true,
+		},
+		Decimals: json.Number("8"),
+	}
+	weth := &types.AssetProfileEntry{
+		Entry: assetprofiletypes.Entry{
+			Denom:           "weth-wei",
+			BaseDenom:       "weth-wei",
+			DisplaySymbol:   "weth",
+			DisplayName:     "Wrapped Ethereum",
+			UnitDenom:       "weth",
+			CommitEnabled:   true,
+			WithdrawEnabled: true,
+		},
+		Decimals: json.Number("18"),
+	}
+
+	// Only append if base denoms don't exist
+	for _, entry := range genesis.AppState.AssetProfile.EntryList {
+		if entry.Entry.BaseDenom == wbtc.Entry.BaseDenom {
+			wbtc = nil
+		}
+		if entry.Entry.BaseDenom == weth.Entry.BaseDenom {
+			weth = nil
+		}
+	}
+
+	if wbtc != nil {
+		genesis.AppState.AssetProfile.EntryList = append(genesis.AppState.AssetProfile.EntryList, *wbtc)
+	}
+	if weth != nil {
+		genesis.AppState.AssetProfile.EntryList = append(genesis.AppState.AssetProfile.EntryList, *weth)
+	}
+
+	if wbtc != nil {
+		genesis.AppState.Oracle.AssetInfos = append(genesis.AppState.Oracle.AssetInfos, types.OracleAssetInfo{
+			AssetInfo: oracletypes.AssetInfo{
+				Denom:      "wbtc-satoshi",
+				Display:    "WBTC",
+				ElysTicker: "WBTC",
+				BandTicker: "WBTC",
+			},
+			Decimal: json.Number("8"),
+		})
+	}
+	if weth != nil {
+		genesis.AppState.Oracle.AssetInfos = append(genesis.AppState.Oracle.AssetInfos, types.OracleAssetInfo{
+			AssetInfo: oracletypes.AssetInfo{
+				Denom:      "weth-wei",
+				Display:    "WETH",
+				ElysTicker: "WETH",
+				BandTicker: "WETH",
+			},
+			Decimal: json.Number("18"),
+		})
+	}
+
+	if wbtc != nil {
+		genesis.AppState.Oracle.Prices = append(genesis.AppState.Oracle.Prices, types.OraclePrice{
+			Price: oracletypes.Price{
+				Asset: "WBTC",
+				Price: math.LegacyMustNewDecFromStr("100000"),
+			},
+			Timestamp:   json.Number("1733907595"),
+			BlockHeight: json.Number("111045"),
+		})
+	}
+	if weth != nil {
+		genesis.AppState.Oracle.Prices = append(genesis.AppState.Oracle.Prices, types.OraclePrice{
+			Price: oracletypes.Price{
+				Asset: "WETH",
+				Price: math.LegacyMustNewDecFromStr("4000"),
+			},
+			Timestamp:   json.Number("1733907595"),
+			BlockHeight: json.Number("111045"),
+		})
+	}
+
+	// update AMM params to whitelist validator address
+	genesis.AppState.Amm.Params.AllowedPoolCreators = append(genesis.AppState.Amm.Params.AllowedPoolCreators, validatorAddress)
 
 	// write genesis file
 	outputFilePath := homePath + "/config/genesis.json"
