@@ -1415,8 +1415,8 @@ github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e/go.mod h1:/Zj4wYkg
 github.com/elazarl/goproxy v0.0.0-20180725130230-947c36da3153/go.mod h1:/Zj4wYkgs4iZTTu3o/KG3Itv/qCCa8VVMlb3i9OVuzc=
 github.com/elys-network/bandchain-packet v0.0.3-sdk47 h1:W4sP/JOXAoABhsV+ck1NTphLuqpuxGg+uul1nDLbgxk=
 github.com/elys-network/bandchain-packet v0.0.3-sdk47/go.mod h1:/CtU24lu2E4RbPRcZFJfEagwW6TUdFcxv7pX0cYYSgk=
-github.com/elys-network/elys v0.54.1-0.20241206102245-13c05fc80d44 h1:xQYZuQf+SZI43CsT7l0fYOMFrYhgpNkcbQiuy6AlSa8=
-github.com/elys-network/elys v0.54.1-0.20241206102245-13c05fc80d44/go.mod h1:NZ52jlKhFT3/l4C2Y6boQqeUga+npWmlE7opK9BtZVA=
+github.com/elys-network/elys v1.0.0 h1:iQEcZNYT0pRkewhq1wJj298E5bRX9FetrLEKmDLjxHY=
+github.com/elys-network/elys v1.0.0/go.mod h1:NZ52jlKhFT3/l4C2Y6boQqeUga+npWmlE7opK9BtZVA=
 github.com/emicklei/dot v1.6.2 h1:08GN+DD79cy/tzN6uLCT84+2Wk9u+wvqP+Hkx/dIR8A=
 github.com/emicklei/dot v1.6.2/go.mod h1:DeV7GvQtIw4h2u73RKBkkFdvVAz0D9fzeJrgPW6gy/s=
 github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633/go.mod h1:otzb+WCGbkyDHkqmQmT5YD2WR4BBwUdeQoFo8l/7tVs=

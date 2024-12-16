@@ -50,7 +50,6 @@ func main() {
 	rootCmd.PersistentFlags().String(flags.FlagHome, homeEnv+"/.elys", "home directory")
 	rootCmd.PersistentFlags().String(flags.FlagMoniker, "alice", "moniker")
 	rootCmd.PersistentFlags().String(flags.FlagValidatorKeyName, "validator", "validator key name")
-	rootCmd.PersistentFlags().String(flags.FlagValidatorBalance, "200000000000000", "validator balance")
 	rootCmd.PersistentFlags().String(flags.FlagValidatorSelfDelegation, "50000000000000", "validator self delegation")
 	rootCmd.PersistentFlags().String(flags.FlagValidatorMnemonic, "shrug census ancient uniform sausage own oil boss tool captain ride year conduct welcome siren protect mutual zero funny universe candy gown rack sister", "validator mnemonic")
 	rootCmd.PersistentFlags().String(flags.FlagRpc, "tcp://0.0.0.0:26657", "rpc")
@@ -62,13 +61,20 @@ func main() {
 	rootCmd.PersistentFlags().String(flags.FlagHome2, homeEnv+"/.elys2", "home directory 2")
 	rootCmd.PersistentFlags().String(flags.FlagMoniker2, "bob", "moniker 2")
 	rootCmd.PersistentFlags().String(flags.FlagValidatorKeyName2, "validator-2", "validator key name 2")
-	rootCmd.PersistentFlags().String(flags.FlagValidatorBalance2, "200000000000000", "validator balance 2")
 	rootCmd.PersistentFlags().String(flags.FlagValidatorSelfDelegation2, "1000000", "validator self delegation 2")
 	rootCmd.PersistentFlags().String(flags.FlagValidatorMnemonic2, "august viable pet tone normal below almost blush portion example trick circle pumpkin citizen conduct outdoor universe wolf ankle asthma deliver correct pool juice", "validator mnemonic 2")
 	rootCmd.PersistentFlags().String(flags.FlagRpc2, "tcp://0.0.0.0:26667", "rpc")
 	rootCmd.PersistentFlags().String(flags.FlagP2p2, "tcp://0.0.0.0:26666", "p2p")
 	rootCmd.PersistentFlags().String(flags.FlagPprof2, "localhost:6061", "pprof")
 	rootCmd.PersistentFlags().String(flags.FlagApi2, "tcp://localhost:1318", "api")
+
+	rootCmd.PersistentFlags().StringSlice(flags.FlagValidatorBalances, []string{
+		"200000000000000uelys",
+		"100000000000000ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349",
+		"100000000000000ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
+		"10000000000000000wbtc-satoshi",
+		"100000000000000000000000000weth-wei",
+	}, "list of balance+denomination pairs for validator accounts (e.g., '100000000uelys,200000000uatom')")
 
 	rootCmd.AddCommand(version.VersionCmd())
 	rootCmd.AddCommand(chainsnapshotexport.ChainSnapshotExportCmd())

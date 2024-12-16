@@ -19,7 +19,6 @@ const (
 	FlagHome                    = "home"
 	FlagMoniker                 = "moniker"
 	FlagValidatorKeyName        = "validator-key-name"
-	FlagValidatorBalance        = "validator-balance"
 	FlagValidatorSelfDelegation = "validator-self-delegation"
 	FlagValidatorMnemonic       = "validator-mnemonic"
 	FlagRpc                     = "rpc"
@@ -31,11 +30,12 @@ const (
 	FlagHome2                    = "home-2"
 	FlagMoniker2                 = "moniker-2"
 	FlagValidatorKeyName2        = "validator-key-name-2"
-	FlagValidatorBalance2        = "validator-balance-2"
 	FlagValidatorSelfDelegation2 = "validator-self-delegation-2"
 	FlagValidatorMnemonic2       = "validator-mnemonic-2"
 	FlagRpc2                     = "rpc-2"
 	FlagP2p2                     = "p2p-2"
 	FlagPprof2                   = "pprof-2"
 	FlagApi2                     = "api-2"
+
+	FlagValidatorBalances = "validator-balances"
 )

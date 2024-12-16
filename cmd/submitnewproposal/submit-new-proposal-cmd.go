@@ -79,11 +79,6 @@ func SubmitNewProposalCmd() *cobra.Command {
 				log.Fatalf(types.ColorRed + "validator key name is required")
 			}
 
-			validatorBalance, _ := cmd.Flags().GetString(flags.FlagValidatorBalance)
-			if validatorBalance == "" {
-				log.Fatalf(types.ColorRed + "validator balance is required")
-			}
-
 			validatorSelfDelegation, _ := cmd.Flags().GetString(flags.FlagValidatorSelfDelegation)
 			if validatorSelfDelegation == "" {
 				log.Fatalf(types.ColorRed + "validator self delegation is required")
@@ -130,11 +125,6 @@ func SubmitNewProposalCmd() *cobra.Command {
 				log.Fatalf(types.ColorRed + "validator key name 2 is required")
 			}
 
-			validatorBalance2, _ := cmd.Flags().GetString(flags.FlagValidatorBalance2)
-			if validatorBalance2 == "" {
-				log.Fatalf(types.ColorRed + "validator balance 2 is required")
-			}
-
 			validatorSelfDelegation2, _ := cmd.Flags().GetString(flags.FlagValidatorSelfDelegation2)
 			if validatorSelfDelegation2 == "" {
 				log.Fatalf(types.ColorRed + "validator self delegation 2 is required")
@@ -163,6 +153,11 @@ func SubmitNewProposalCmd() *cobra.Command {
 			api2, _ := cmd.Flags().GetString(flags.FlagApi2)
 			if api2 == "" {
 				log.Fatalf(types.ColorRed + "api 2 is required")
+			}
+
+			validatorBalances, _ := cmd.Flags().GetStringSlice(flags.FlagValidatorBalances)
+			if len(validatorBalances) == 0 {
+				log.Fatalf(types.ColorRed + "validator balances are required")
 			}
 
 			timeOutWaitForNode, err := cmd.Flags().GetInt(flags.FlagTimeOutToWaitForNode)

@@ -317,8 +317,16 @@ type Commitment struct {
 type CommitmentParams struct {
 	commitmenttypes.Params
 
-	VestingInfos        []CommitmentVestingInfo `json:"vesting_infos"`
-	NumberOfCommitments json.Number             `json:"number_of_commitments"`
+	VestingInfos           []CommitmentVestingInfo `json:"vesting_infos"`
+	NumberOfCommitments    json.Number             `json:"number_of_commitments"`
+	StartAtomStakersHeight json.Number             `json:"start_atom_stakers_height"`
+	EndAtomStakersHeight   json.Number             `json:"end_atom_stakers_height"`
+	StartCadetsHeight      json.Number             `json:"start_cadets_height"`
+	EndCadetsHeight        json.Number             `json:"end_cadets_height"`
+	StartNftHoldersHeight  json.Number             `json:"start_nft_holders_height"`
+	EndNftHoldersHeight    json.Number             `json:"end_nft_holders_height"`
+	StartGovernorsHeight   json.Number             `json:"start_governors_height"`
+	EndGovernorsHeight     json.Number             `json:"end_governors_height"`
 }
 
 type CommitmentVestingInfo struct {
@@ -331,7 +339,13 @@ type CommitmentVestingInfo struct {
 type AssetProfile struct {
 	assetprofiletypes.GenesisState
 
-	EntryList []interface{} `json:"entry_list"`
+	EntryList []AssetProfileEntry `json:"entry_list"`
+}
+
+type AssetProfileEntry struct {
+	assetprofiletypes.Entry
+
+	Decimals json.Number `json:"decimals"`
 }
 
 type Amm struct {
@@ -363,9 +377,22 @@ type EvidenceState struct {
 type Oracle struct {
 	oracletypes.GenesisState
 
-	Params     OracleParams  `json:"params"`
-	AssetInfos []interface{} `json:"asset_infos"`
-	Prices     []interface{} `json:"prices"`
+	Params     OracleParams      `json:"params"`
+	AssetInfos []OracleAssetInfo `json:"asset_infos"`
+	Prices     []OraclePrice     `json:"prices"`
+}
+
+type OracleAssetInfo struct {
+	oracletypes.AssetInfo
+
+	Decimal json.Number `json:"decimal"`
+}
+
+type OraclePrice struct {
+	oracletypes.Price
+
+	Timestamp   json.Number `json:"timestamp"`
+	BlockHeight json.Number `json:"block_height"`
 }
 
 type OracleParams struct {
