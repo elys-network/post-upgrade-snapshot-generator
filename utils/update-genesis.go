@@ -205,6 +205,27 @@ func UpdateGenesis(cmdPath, homePath, genesisFilePath string, balances []string,
 	// update AMM params to whitelist validator address
 	genesis.AppState.Amm.Params.AllowedPoolCreators = append(genesis.AppState.Amm.Params.AllowedPoolCreators, validatorAddress)
 
+	// update commitment airdrop params
+	// genesis.AppState.Commitment.Params.EnableClaim = true
+	// genesis.AppState.Commitment.Params.StartAirdropClaimHeight = json.Number("111046")
+	// genesis.AppState.Commitment.Params.EndAirdropClaimHeight = json.Number("111600")
+	// genesis.AppState.Commitment.Params.StartKolClaimHeight = json.Number("111046")
+	// genesis.AppState.Commitment.Params.EndKolClaimHeight = json.Number("111600")
+
+	// genesis.AppState.Commitment.KolList = []types.KolList{
+	// 	{
+	// 		Address: "elys1wluheavcjknwnagskt0994rrtuvap9jcz0ng5q",
+	// 		Amount:  "1000000000000",
+	// 	},
+	// }
+
+	// genesis.AppState.Commitment.AtomStakers = []types.AtomStaker{
+	// 	{
+	// 		Address: "elys1wluheavcjknwnagskt0994rrtuvap9jcz0ng5q",
+	// 		Amount:  "1000000000000",
+	// 	},
+	// }
+
 	// write genesis file
 	outputFilePath := homePath + "/config/genesis.json"
 	if err := WriteGenesisFile(outputFilePath, genesis); err != nil {
