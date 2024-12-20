@@ -16,6 +16,7 @@ func SubmitUpgradeProposal(cmdPath, name, newVersion, upgradeHeight, homePath, k
 		"10000000uelys",
 		newVersion,
 		newVersion,
+		"false",
 		"--from", name,
 		"--keyring-backend", keyringBackend,
 		"--chain-id", chainId,
