@@ -312,21 +312,33 @@ type Commitment struct {
 
 	Params      CommitmentParams `json:"params"`
 	Commitments []interface{}    `json:"commitments"`
+	KolList     []KolList        `json:"kol_list"`
+	AtomStakers []AtomStaker     `json:"atom_stakers"`
+}
+
+type AtomStaker struct {
+	commitmenttypes.AtomStaker
+
+	Address string `json:"address"`
+	Amount  string `json:"amount"`
+}
+
+type KolList struct {
+	commitmenttypes.KolList
+
+	Address string `json:"address"`
+	Amount  string `json:"amount"`
 }
 
 type CommitmentParams struct {
 	commitmenttypes.Params
 
-	VestingInfos           []CommitmentVestingInfo `json:"vesting_infos"`
-	NumberOfCommitments    json.Number             `json:"number_of_commitments"`
-	StartAtomStakersHeight json.Number             `json:"start_atom_stakers_height"`
-	EndAtomStakersHeight   json.Number             `json:"end_atom_stakers_height"`
-	StartCadetsHeight      json.Number             `json:"start_cadets_height"`
-	EndCadetsHeight        json.Number             `json:"end_cadets_height"`
-	StartNftHoldersHeight  json.Number             `json:"start_nft_holders_height"`
-	EndNftHoldersHeight    json.Number             `json:"end_nft_holders_height"`
-	StartGovernorsHeight   json.Number             `json:"start_governors_height"`
-	EndGovernorsHeight     json.Number             `json:"end_governors_height"`
+	VestingInfos            []CommitmentVestingInfo `json:"vesting_infos"`
+	NumberOfCommitments     json.Number             `json:"number_of_commitments"`
+	StartAirdropClaimHeight json.Number             `json:"start_airdrop_claim_height"`
+	EndAirdropClaimHeight   json.Number             `json:"end_airdrop_claim_height"`
+	StartKolClaimHeight     json.Number             `json:"start_kol_claim_height"`
+	EndKolClaimHeight       json.Number             `json:"end_kol_claim_height"`
 }
 
 type CommitmentVestingInfo struct {
