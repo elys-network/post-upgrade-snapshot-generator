@@ -1,6 +1,8 @@
 module github.com/elys-network/post-upgrade-snapshot-generator
 
-go 1.22.6
+go 1.22.7
+
+toolchain go1.23.1
 
 require (
 	cosmossdk.io/math v1.4.0
@@ -15,7 +17,7 @@ require (
 	github.com/cosmos/cosmos-sdk v0.50.9
 	github.com/cosmos/ibc-go/modules/capability v1.0.1
 	github.com/cosmos/ibc-go/v8 v8.5.1
-	github.com/elys-network/elys v1.4.0
+	github.com/elys-network/elys v1.6.0
 	github.com/spf13/cobra v1.8.1
 	github.com/vbauerster/mpb/v8 v8.8.3
 )
