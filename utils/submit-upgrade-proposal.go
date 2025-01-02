@@ -1,13 +1,27 @@
 package utils
 
 import (
+	"fmt"
 	"log"
 	"os/exec"
+	"strings"
 
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 )
 
+// generate upgrade version from the current version (v999999.999999.999999 => v999999)
+func generateUpgradeVersion(currentVersion string) string {
+	parts := strings.Split(currentVersion, ".")
+	if len(parts) != 3 {
+		panic(fmt.Sprintf("Invalid version format: %s. Expected format: vX.Y.Z", currentVersion))
+	}
+	majorVersion := strings.TrimPrefix(parts[0], "v")
+	return fmt.Sprintf("v%s", majorVersion)
+}
+
 func SubmitUpgradeProposal(cmdPath, name, newVersion, upgradeHeight, homePath, keyringBackend, chainId, node, broadcastMode string) string {
+	newVersion = generateUpgradeVersion(newVersion)
+
 	// Command and arguments
 	args := []string{
 		"software-upgrade-tx",
