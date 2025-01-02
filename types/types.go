@@ -671,11 +671,10 @@ type ModuleAccount struct {
 }
 
 type Account struct {
-	*BaseAccount
-	*ModuleAccount
-	*PeriodicVestingAccount
-
-	Type string `json:"@type"`
+	*VestingAccount `json:",omitempty"`
+	*BaseAccount    `json:",omitempty"`
+	*ModuleAccount  `json:",omitempty"`
+	Type            string `json:"@type"`
 }
 
 type Auth struct {
@@ -685,10 +684,10 @@ type Auth struct {
 	Accounts []Account  `json:"accounts"`
 }
 
-type PeriodicVestingAccount struct {
+type VestingAccount struct {
 	BaseVestingAccount BaseVestingAccount `json:"base_vesting_account"`
 	StartTime          json.Number        `json:"start_time"`
-	VestingPeriods     []VestingPeriod    `json:"vesting_periods"`
+	VestingPeriods     []VestingPeriod    `json:"vesting_periods,omitempty"`
 }
 
 type BaseVestingAccount struct {

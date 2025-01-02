@@ -26,10 +26,12 @@ func UpdateGenesis(cmdPath, homePath, genesisFilePath string, balances []string,
 	}
 
 	filterAccountAddresses := []string{
-		"elys1ed2lkxujcqfckkhfwmyjqwuqp47ve37crctuus", // remove existing account 0
+		"elys1ed2lkxujcqfckkhfwmyjqwuqp47ve37crctuus", // testnet existing account 0
+		"elys1akmdyat0d33net2rgqnpm28xhydkhgraptmhey", // mainnet existing account 0
 	}
 	filterBalanceAddresses := []string{
-		"elys1ed2lkxujcqfckkhfwmyjqwuqp47ve37crctuus", // remove existing account 0
+		"elys1ed2lkxujcqfckkhfwmyjqwuqp47ve37crctuus", // testnet existing account 0
+		"elys1akmdyat0d33net2rgqnpm28xhydkhgraptmhey", // mainnet existing account 0
 		authtypes.NewModuleAddress("bonded_tokens_pool").String(),
 		authtypes.NewModuleAddress("not_bonded_tokens_pool").String(),
 		authtypes.NewModuleAddress("gov").String(),
