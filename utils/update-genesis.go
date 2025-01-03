@@ -34,7 +34,6 @@ func UpdateGenesis(cmdPath, homePath, genesisFilePath string, balances []string,
 		"elys1akmdyat0d33net2rgqnpm28xhydkhgraptmhey", // mainnet existing account 0
 		authtypes.NewModuleAddress("bonded_tokens_pool").String(),
 		authtypes.NewModuleAddress("not_bonded_tokens_pool").String(),
-		authtypes.NewModuleAddress("gov").String(),
 	}
 
 	var coinsToRemove sdk.Coins
