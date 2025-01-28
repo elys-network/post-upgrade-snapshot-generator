@@ -163,7 +163,7 @@ func SubmitNewProposalCmd() *cobra.Command {
 			timeOutWaitForNode, err := cmd.Flags().GetInt(flags.FlagTimeOutToWaitForNode)
 
 			if err != nil {
-				log.Fatalf(types.ColorRed + err.Error())
+				log.Fatalf("%sError retrieving time out wait for node parameter value: %v", types.ColorRed, err)
 			}
 
 			if timeOutWaitForNode == 0 {
@@ -188,9 +188,22 @@ func SubmitNewProposalCmd() *cobra.Command {
 			// print new binary path and version
 			log.Printf(types.ColorGreen+"New binary path: %v and version: %v", newBinaryPath, newVersion)
 
+			// prepare price feeder flags if enabled
+			var startArgs []string
+			priceFeederEnable, _ := cmd.Flags().GetBool(flags.FlagPriceFeederEnable)
+			if priceFeederEnable {
+				priceFeederConfigPath, _ := cmd.Flags().GetString(flags.FlagPriceFeederConfigPath)
+				priceFeederLogLevel, _ := cmd.Flags().GetString(flags.FlagPriceFeederLogLevel)
+				startArgs = []string{
+					"--pricefeeder.enable=true",
+					"--pricefeeder.config_path=" + priceFeederConfigPath,
+					"--pricefeeder.log_level=" + priceFeederLogLevel,
+				}
+			}
+
 			// start node 1 and 2
-			oldBinaryCmd := utils.Start(oldBinaryPath, homePath, rpc, p2p, pprof, api, moniker, types.ColorGreen, types.ColorRed)
-			oldBinaryCmd2 := utils.Start(oldBinaryPath, homePath2, rpc2, p2p2, pprof2, api2, moniker2, types.ColorGreen, types.ColorRed)
+			oldBinaryCmd := utils.Start(oldBinaryPath, homePath, rpc, p2p, pprof, api, moniker, types.ColorGreen, types.ColorRed, startArgs...)
+			oldBinaryCmd2 := utils.Start(oldBinaryPath, homePath2, rpc2, p2p2, pprof2, api2, moniker2, types.ColorGreen, types.ColorRed, startArgs...)
 
 			// wait for rpc 1 and 2 to start
 			utils.WaitForServiceToStart(rpc, moniker, timeOutWaitForNode)
