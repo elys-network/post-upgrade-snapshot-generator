@@ -21,7 +21,7 @@ import (
 // 7. wait for next block
 // 8. stop new binaries
 func UpgradeToNewBinaryCmd() *cobra.Command {
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:   "upgrade-to-new-binary [new_binary_url] [flags]",
 		Short: "Upgrade to the new binary",
 		Args:  cobra.ExactArgs(1),
@@ -128,7 +128,7 @@ func UpgradeToNewBinaryCmd() *cobra.Command {
 			timeOutWaitForNode, err := cmd.Flags().GetInt(flags.FlagTimeOutToWaitForNode)
 
 			if err != nil {
-				log.Fatalf(types.ColorRed + err.Error())
+				log.Fatalf("%sError retrieving time out wait for node parameter value: %v", types.ColorRed, err)
 			}
 
 			if timeOutWaitForNode == 0 {
@@ -138,7 +138,7 @@ func UpgradeToNewBinaryCmd() *cobra.Command {
 			timeOutToWaitForNextBlock, err := cmd.Flags().GetInt(flags.FlagTimeOutNextBlock)
 
 			if err != nil {
-				log.Fatalf(types.ColorRed + err.Error())
+				log.Fatalf("%sError retrieving time out next block parameter value: %v", types.ColorRed, err)
 			}
 
 			if timeOutToWaitForNextBlock == 0 {
@@ -164,9 +164,22 @@ func UpgradeToNewBinaryCmd() *cobra.Command {
 			// wait 5 seconds
 			time.Sleep(5 * time.Second)
 
-			// start new binary
-			newBinaryCmd := utils.Start(newBinaryPath, homePath, rpc, p2p, pprof, api, moniker, "\033[32m", "\033[31m")
-			newBinaryCmd2 := utils.Start(newBinaryPath, homePath2, rpc2, p2p2, pprof2, api2, moniker2, "\033[32m", "\033[31m")
+			// start new binary with price feeder flags if enabled
+			var startArgs []string
+			priceFeederEnable, _ := cmd.Flags().GetBool(flags.FlagPriceFeederEnable)
+			if priceFeederEnable {
+				priceFeederConfigPath, _ := cmd.Flags().GetString(flags.FlagPriceFeederConfigPath)
+				priceFeederLogLevel, _ := cmd.Flags().GetString(flags.FlagPriceFeederLogLevel)
+				startArgs = []string{
+					"--pricefeeder.enable=true",
+					"--pricefeeder.config_path=" + priceFeederConfigPath,
+					"--pricefeeder.log_level=" + priceFeederLogLevel,
+				}
+			}
+			
+			// Update the Start calls to include price feeder args
+			newBinaryCmd := utils.Start(newBinaryPath, homePath, rpc, p2p, pprof, api, moniker, "\033[32m", "\033[31m", startArgs...)
+			newBinaryCmd2 := utils.Start(newBinaryPath, homePath2, rpc2, p2p2, pprof2, api2, moniker2, "\033[32m", "\033[31m", startArgs...)
 
 			// wait for node to start
 			utils.WaitForServiceToStart(rpc, moniker, timeOutWaitForNode)
@@ -197,4 +210,6 @@ func UpgradeToNewBinaryCmd() *cobra.Command {
 			utils.Stop(newBinaryCmd, newBinaryCmd2)
 		},
 	}
+
+	return cmd
 }

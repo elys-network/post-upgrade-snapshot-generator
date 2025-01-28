@@ -38,4 +38,9 @@ const (
 	FlagApi2                     = "api-2"
 
 	FlagValidatorBalances = "validator-balances"
+
+	// price feeder flags
+	FlagPriceFeederEnable     = "pricefeeder.enable"
+	FlagPriceFeederConfigPath = "pricefeeder.config_path"
+	FlagPriceFeederLogLevel   = "pricefeeder.log_level"
 )
