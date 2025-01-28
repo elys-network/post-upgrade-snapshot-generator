@@ -76,6 +76,11 @@ func main() {
 		"100000000000000000000000000weth-wei",
 	}, "list of balance+denomination pairs for validator accounts (e.g., '100000000uelys,200000000uatom')")
 
+	// price feeder flags
+	rootCmd.PersistentFlags().Bool(flags.FlagPriceFeederEnable, false, "Enable price feeder")
+	rootCmd.PersistentFlags().String(flags.FlagPriceFeederConfigPath, "cmd/elysd/price-feeder.example.toml", "Price feeder config path")
+	rootCmd.PersistentFlags().String(flags.FlagPriceFeederLogLevel, "debug", "Price feeder log level")
+
 	rootCmd.AddCommand(version.VersionCmd())
 	rootCmd.AddCommand(chainsnapshotexport.ChainSnapshotExportCmd())
 	rootCmd.AddCommand(chaininit.ChainInitCmd())

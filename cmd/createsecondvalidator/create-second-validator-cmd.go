@@ -111,7 +111,7 @@ func CreateSecondValidatorCmd() *cobra.Command {
 			timeOutWaitForNode, err := cmd.Flags().GetInt(flags.FlagTimeOutToWaitForNode)
 
 			if err != nil {
-				log.Fatalf(types.ColorRed + err.Error())
+				log.Fatalf("%sError retrieving time out wait for node parameter value: %v", types.ColorRed, err)
 			}
 
 			if timeOutWaitForNode == 0 {
@@ -121,7 +121,7 @@ func CreateSecondValidatorCmd() *cobra.Command {
 			timeOutToWaitForNextBlock, err := cmd.Flags().GetInt(flags.FlagTimeOutNextBlock)
 
 			if err != nil {
-				log.Fatalf(types.ColorRed + err.Error())
+				log.Fatalf("%sError retrieving time out next block parameter value: %v", types.ColorRed, err)
 			}
 
 			if timeOutToWaitForNextBlock == 0 {
@@ -144,8 +144,21 @@ func CreateSecondValidatorCmd() *cobra.Command {
 			// print old binary path and version
 			log.Printf(types.ColorGreen+"Old binary path: %v and version: %v", oldBinaryPath, oldVersion)
 
+			// prepare price feeder flags if enabled
+			var startArgs []string
+			priceFeederEnable, _ := cmd.Flags().GetBool(flags.FlagPriceFeederEnable)
+			if priceFeederEnable {
+				priceFeederConfigPath, _ := cmd.Flags().GetString(flags.FlagPriceFeederConfigPath)
+				priceFeederLogLevel, _ := cmd.Flags().GetString(flags.FlagPriceFeederLogLevel)
+				startArgs = []string{
+					"--pricefeeder.enable=true",
+					"--pricefeeder.config_path=" + priceFeederConfigPath,
+					"--pricefeeder.log_level=" + priceFeederLogLevel,
+				}
+			}
+
 			// start node 1
-			oldBinaryCmd := utils.Start(oldBinaryPath, homePath, rpc, p2p, pprof, api, moniker, types.ColorGreen, types.ColorRed)
+			oldBinaryCmd := utils.Start(oldBinaryPath, homePath, rpc, p2p, pprof, api, moniker, types.ColorGreen, types.ColorRed, startArgs...)
 
 			// wait for rpc to start
 			utils.WaitForServiceToStart(rpc, moniker, timeOutWaitForNode)
