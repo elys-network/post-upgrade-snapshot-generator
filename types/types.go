@@ -630,6 +630,7 @@ type LeverageLPParams struct {
 	EpochLength      json.Number `json:"epoch_length"`
 	MaxOpenPositions json.Number `json:"max_open_positions"`
 	NumberPerBlock   json.Number `json:"number_per_block"`
+	EnabledPools     []json.Number    `json:"enabled_pools"`
 }
 
 type Perpetual struct {
