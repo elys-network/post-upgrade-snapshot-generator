@@ -206,6 +206,9 @@ func UpdateGenesis(cmdPath, homePath, genesisFilePath string, balances []string,
 	// update AMM params to whitelist validator address
 	genesis.AppState.Amm.Params.AllowedPoolCreators = append(genesis.AppState.Amm.Params.AllowedPoolCreators, validatorAddress)
 
+	// update consensus abci params to trigger oracle data update
+	genesis.Consensus.Params.ABCI.VoteExtensionsEnableHeight = "2"
+
 	// update commitment airdrop params
 	// genesis.AppState.Commitment.Params.EnableClaim = true
 	// genesis.AppState.Commitment.Params.StartAirdropClaimHeight = json.Number("111046")
