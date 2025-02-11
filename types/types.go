@@ -372,6 +372,7 @@ type AmmParams struct {
 	ammtypes.Params
 
 	SlippageTrackDuration json.Number `json:"slippage_track_duration"`
+	LpLockupDuration      json.Number `json:"lp_lockup_duration"`
 }
 
 type Genutil struct {
@@ -627,10 +628,10 @@ type LeverageLP struct {
 type LeverageLPParams struct {
 	leveragelptypes.Params
 
-	EpochLength      json.Number `json:"epoch_length"`
-	MaxOpenPositions json.Number `json:"max_open_positions"`
-	NumberPerBlock   json.Number `json:"number_per_block"`
-	EnabledPools     []json.Number    `json:"enabled_pools"`
+	EpochLength      json.Number   `json:"epoch_length"`
+	MaxOpenPositions json.Number   `json:"max_open_positions"`
+	NumberPerBlock   json.Number   `json:"number_per_block"`
+	EnabledPools     []json.Number `json:"enabled_pools"`
 }
 
 type Perpetual struct {
