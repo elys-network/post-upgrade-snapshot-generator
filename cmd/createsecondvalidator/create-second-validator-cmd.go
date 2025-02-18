@@ -147,14 +147,15 @@ func CreateSecondValidatorCmd() *cobra.Command {
 			// prepare price feeder flags if enabled
 			var startArgs []string
 			priceFeederEnable, _ := cmd.Flags().GetBool(flags.FlagPriceFeederEnable)
+			priceFeederConfigPath, _ := cmd.Flags().GetString(flags.FlagPriceFeederConfigPath)
+			priceFeederLogLevel, _ := cmd.Flags().GetString(flags.FlagPriceFeederLogLevel)
+			startArgs = []string{
+				"--pricefeeder.config_path=" + priceFeederConfigPath,
+				"--pricefeeder.log_level=" + priceFeederLogLevel,
+			}
+
 			if priceFeederEnable {
-				priceFeederConfigPath, _ := cmd.Flags().GetString(flags.FlagPriceFeederConfigPath)
-				priceFeederLogLevel, _ := cmd.Flags().GetString(flags.FlagPriceFeederLogLevel)
-				startArgs = []string{
-					"--pricefeeder.enable=true",
-					"--pricefeeder.config_path=" + priceFeederConfigPath,
-					"--pricefeeder.log_level=" + priceFeederLogLevel,
-				}
+				startArgs = append(startArgs, "--pricefeeder.enable=true")
 			}
 
 			// start node 1
