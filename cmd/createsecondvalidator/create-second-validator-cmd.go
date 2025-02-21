@@ -155,7 +155,7 @@ func CreateSecondValidatorCmd() *cobra.Command {
 			}
 
 			if priceFeederEnable {
-				startArgs = append(startArgs, "--pricefeeder.enable")
+				startArgs = append(startArgs, "--pricefeeder.enable=true")
 			}
 
 			// start node 1
