@@ -18,6 +18,7 @@ require (
 	github.com/cosmos/ibc-go/modules/capability v1.0.1
 	github.com/cosmos/ibc-go/v8 v8.5.2
 	github.com/elys-network/elys v1.6.1-0.20250225104651-449f52aa56db
+	github.com/ojo-network/ojo v0.5.1-rc3.0.20250221003619-10b35762ed3b
 	github.com/spf13/cobra v1.8.1
 	github.com/vbauerster/mpb/v8 v8.8.3
 )
@@ -138,7 +139,6 @@ require (
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/oasisprotocol/curve25519-voi v0.0.0-20230904125328-1f23a7beb09a // indirect
-	github.com/ojo-network/ojo v0.5.1-rc3.0.20250221003619-10b35762ed3b // indirect
 	github.com/ojo-network/price-feeder v0.2.1-rc1.0.20250211204900-ae5453a8a466 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
