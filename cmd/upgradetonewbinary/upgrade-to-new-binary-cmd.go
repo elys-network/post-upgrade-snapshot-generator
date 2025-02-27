@@ -166,7 +166,7 @@ func UpgradeToNewBinaryCmd() *cobra.Command {
 
 			// start new binary with price feeder flags if enabled
 			var startArgs []string
-			priceFeederEnable, _ := cmd.Flags().GetBool(flags.FlagPriceFeederEnable)
+			//priceFeederEnable, _ := cmd.Flags().GetBool(flags.FlagPriceFeederEnable)
 			priceFeederConfigPath, _ := cmd.Flags().GetString(flags.FlagPriceFeederConfigPath)
 			priceFeederLogLevel, _ := cmd.Flags().GetString(flags.FlagPriceFeederLogLevel)
 			startArgs = []string{
@@ -174,9 +174,9 @@ func UpgradeToNewBinaryCmd() *cobra.Command {
 				"--pricefeeder.log_level=" + priceFeederLogLevel,
 			}
 
-			if priceFeederEnable {
-				startArgs = append(startArgs, "--pricefeeder.enable=true")
-			}
+			//if priceFeederEnable {
+			//	startArgs = append(startArgs, "--pricefeeder.enable=true")
+			//}
 
 			// Update the Start calls to include price feeder args
 			newBinaryCmd := utils.Start(newBinaryPath, homePath, rpc, p2p, pprof, api, moniker, "\033[32m", "\033[31m", startArgs...)

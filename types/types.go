@@ -29,7 +29,6 @@ import (
 	commitmenttypes "github.com/elys-network/elys/x/commitment/types"
 	epochstypes "github.com/elys-network/elys/x/epochs/types"
 	leveragelptypes "github.com/elys-network/elys/x/leveragelp/types"
-	oracletypes "github.com/elys-network/elys/x/oracle/types"
 	parametertypes "github.com/elys-network/elys/x/parameter/types"
 	perpetualtypes "github.com/elys-network/elys/x/perpetual/types"
 	stablestaketypes "github.com/elys-network/elys/x/stablestake/types"
@@ -37,6 +36,7 @@ import (
 	tokenomicstypes "github.com/elys-network/elys/x/tokenomics/types"
 	tradeshieldtypes "github.com/elys-network/elys/x/tradeshield/types"
 	transferhooktypes "github.com/elys-network/elys/x/transferhook/types"
+	oracletypes "github.com/ojo-network/ojo/x/oracle/types"
 
 	cometbfttypes "github.com/cometbft/cometbft/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -411,14 +411,15 @@ type OraclePrice struct {
 type OracleParams struct {
 	oracletypes.Params
 
-	OracleScriptID   json.Number `json:"oracle_script_id"`
-	Multiplier       json.Number `json:"multiplier"`
-	AskCount         json.Number `json:"ask_count"`
-	MinCount         json.Number `json:"min_count"`
-	PrepareGas       json.Number `json:"prepare_gas"`
-	ExecuteGas       json.Number `json:"execute_gas"`
-	PriceExpiryTime  json.Number `json:"price_expiry_time"`
-	LifeTimeInBlocks json.Number `json:"life_time_in_blocks"`
+	VotePeriod               json.Number `json:"vote_period"`
+	RewardDistributionWindow json.Number `json:"reward_distribution_window"`
+	SlashWindow              json.Number `json:"slash_window"`
+	HistoricStampPeriod      json.Number `json:"historic_stamp_period"`
+	MedianStampPeriod        json.Number `json:"median_stamp_period"`
+	MaximumPriceStamps       json.Number `json:"maximum_price_stamps"`
+	MaximumMedianStamps      json.Number `json:"maximum_median_stamps"`
+	PriceExpiryTime          json.Number `json:"price_expiry_time"`
+	LifeTimeInBlocks         json.Number `json:"life_time_in_blocks"`
 }
 
 type Parameter struct {
