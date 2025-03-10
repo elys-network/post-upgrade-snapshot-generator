@@ -411,6 +411,15 @@ type OraclePrice struct {
 type OracleParams struct {
 	oracletypes.Params
 
+	OracleScriptID json.Number `json:"oracle_script_id"`
+	Multiplier     json.Number `json:"multiplier"`
+	AskCount       json.Number `json:"ask_count"`
+	MinCount       json.Number `json:"min_count"`
+	PrepareGas     json.Number `json:"prepare_gas"`
+	ExecuteGas     json.Number `json:"execute_gas"`
+	ClientID       json.Number `json:"client_id"`
+	BandEpoch      json.Number `json:"band_epoch"`
+
 	VotePeriod               json.Number `json:"vote_period"`
 	RewardDistributionWindow json.Number `json:"reward_distribution_window"`
 	SlashWindow              json.Number `json:"slash_window"`
