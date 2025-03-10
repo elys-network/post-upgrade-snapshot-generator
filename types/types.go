@@ -418,15 +418,15 @@ type OracleParams struct {
 	PrepareGas     json.Number `json:"prepare_gas"`
 	ExecuteGas     json.Number `json:"execute_gas"`
 
-	VotePeriod               json.Number `json:"vote_period"`
-	RewardDistributionWindow json.Number `json:"reward_distribution_window"`
-	SlashWindow              json.Number `json:"slash_window"`
-	HistoricStampPeriod      json.Number `json:"historic_stamp_period"`
-	MedianStampPeriod        json.Number `json:"median_stamp_period"`
-	MaximumPriceStamps       json.Number `json:"maximum_price_stamps"`
-	MaximumMedianStamps      json.Number `json:"maximum_median_stamps"`
-	PriceExpiryTime          json.Number `json:"price_expiry_time"`
-	LifeTimeInBlocks         json.Number `json:"life_time_in_blocks"`
+	//VotePeriod               json.Number `json:"vote_period"`
+	//RewardDistributionWindow json.Number `json:"reward_distribution_window"`
+	//SlashWindow              json.Number `json:"slash_window"`
+	//HistoricStampPeriod      json.Number `json:"historic_stamp_period"`
+	//MedianStampPeriod        json.Number `json:"median_stamp_period"`
+	//MaximumPriceStamps       json.Number `json:"maximum_price_stamps"`
+	//MaximumMedianStamps      json.Number `json:"maximum_median_stamps"`
+	PriceExpiryTime  json.Number `json:"price_expiry_time"`
+	LifeTimeInBlocks json.Number `json:"life_time_in_blocks"`
 }
 
 type Parameter struct {
