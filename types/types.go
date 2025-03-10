@@ -417,7 +417,6 @@ type OracleParams struct {
 	MinCount       json.Number `json:"min_count"`
 	PrepareGas     json.Number `json:"prepare_gas"`
 	ExecuteGas     json.Number `json:"execute_gas"`
-	ClientID       json.Number `json:"client_id"`
 	BandEpoch      json.Number `json:"band_epoch"`
 
 	VotePeriod               json.Number `json:"vote_period"`
