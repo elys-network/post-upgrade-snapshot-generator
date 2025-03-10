@@ -193,10 +193,10 @@ func SubmitNewProposalCmd() *cobra.Command {
 			//priceFeederEnable, _ := cmd.Flags().GetBool(flags.FlagPriceFeederEnable)
 			//priceFeederConfigPath, _ := cmd.Flags().GetString(flags.FlagPriceFeederConfigPath)
 			//priceFeederLogLevel, _ := cmd.Flags().GetString(flags.FlagPriceFeederLogLevel)
-			startArgs = []string{
-				//"--pricefeeder.config_path=" + priceFeederConfigPath,
-				//"--pricefeeder.log_level=" + priceFeederLogLevel,
-			}
+			//startArgs = []string{
+			//"--pricefeeder.config_path=" + priceFeederConfigPath,
+			//"--pricefeeder.log_level=" + priceFeederLogLevel,
+			//}
 			//
 			//if priceFeederEnable {
 			//	startArgs = append(startArgs, "--pricefeeder.enable=true")
