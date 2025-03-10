@@ -9,8 +9,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	assetprofiletypes "github.com/elys-network/elys/x/assetprofile/types"
+	oracletypes "github.com/elys-network/elys/x/oracle/types"
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
-	oracletypes "github.com/ojo-network/ojo/x/oracle/types"
 )
 
 func UpdateGenesis(cmdPath, homePath, genesisFilePath string, balances []string, validatorAddress string) {

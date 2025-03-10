@@ -29,6 +29,7 @@ import (
 	commitmenttypes "github.com/elys-network/elys/x/commitment/types"
 	epochstypes "github.com/elys-network/elys/x/epochs/types"
 	leveragelptypes "github.com/elys-network/elys/x/leveragelp/types"
+	oracletypes "github.com/elys-network/elys/x/oracle/types"
 	parametertypes "github.com/elys-network/elys/x/parameter/types"
 	perpetualtypes "github.com/elys-network/elys/x/perpetual/types"
 	stablestaketypes "github.com/elys-network/elys/x/stablestake/types"
@@ -36,7 +37,6 @@ import (
 	tokenomicstypes "github.com/elys-network/elys/x/tokenomics/types"
 	tradeshieldtypes "github.com/elys-network/elys/x/tradeshield/types"
 	transferhooktypes "github.com/elys-network/elys/x/transferhook/types"
-	oracletypes "github.com/ojo-network/ojo/x/oracle/types"
 
 	cometbfttypes "github.com/cometbft/cometbft/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
