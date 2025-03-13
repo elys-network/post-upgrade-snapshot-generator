@@ -49,6 +49,8 @@ func SubmitUpgradeProposal(cmdPath, name, newVersion, upgradeHeight, homePath, k
 		log.Fatalf(types.ColorRed+"Command execution failed: %v", err)
 	}
 
+	log.Printf(types.ColorYellow+"Tx Response: %v", string(output))
+
 	// Parse output to find the transaction hash
 	txHash, err := ParseTxHash(output)
 	if err != nil {
