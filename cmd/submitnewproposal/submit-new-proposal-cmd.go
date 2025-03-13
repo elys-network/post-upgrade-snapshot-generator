@@ -2,6 +2,7 @@ package submitnewproposal
 
 import (
 	"log"
+	"strconv"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -209,6 +210,16 @@ func SubmitNewProposalCmd() *cobra.Command {
 			// wait for rpc 1 and 2 to start
 			utils.WaitForServiceToStart(rpc, moniker, timeOutWaitForNode)
 			utils.WaitForServiceToStart(rpc2, moniker2, timeOutWaitForNode)
+
+			utils.WaitForServiceToStart(rpc, moniker, timeOutWaitForNode)
+			utils.WaitForServiceToStart(rpc2, moniker2, timeOutWaitForNode)
+
+			currentBlockHeightString, err := utils.QueryBlockHeight(oldBinaryPath, rpc)
+			if err != nil {
+				log.Fatalf(types.ColorRed+"Error querying block height: %v", err)
+			}
+			currentBlockHeight, err := strconv.Atoi(currentBlockHeightString)
+			utils.WaitForBlockHeight(oldBinaryPath, rpc, strconv.Itoa(currentBlockHeight+5))
 
 			// query and calculate upgrade block height
 			upgradeBlockHeight := utils.QueryAndCalcUpgradeBlockHeight(oldBinaryPath, rpc)
