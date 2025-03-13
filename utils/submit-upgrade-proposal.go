@@ -44,6 +44,7 @@ func SubmitUpgradeProposal(cmdPath, name, newVersion, upgradeHeight, homePath, k
 	}
 
 	// Execute the command
+	log.Printf(types.ColorYellow+"args: %v", args)
 	output, err := exec.Command(cmdPath, args...).CombinedOutput()
 	if err != nil {
 		log.Fatalf(types.ColorRed+"Command execution failed: %v", err)
