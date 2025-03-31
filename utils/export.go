@@ -46,6 +46,7 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"transferhook",
 		"upgrade",
 		"vesting",
+		"wasm",
 	}
 
 	// Combine the modules into a comma-separated string
