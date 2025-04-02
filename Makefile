@@ -92,7 +92,7 @@ help: Makefile
 .DEFAULT_GOAL := build
 
 GORELEASER_IMAGE := ghcr.io/goreleaser/goreleaser-cross:v$(GO_VERSION)
-COSMWASM_VERSION := $(shell go list -m github.com/CosmWasm/wasmvm | sed 's/.* //')
+COSMWASM_VERSION := $(shell go list -m github.com/CosmWasm/wasmvm/v2 | sed 's/.* //')
 
 ## release: Build binaries for all platforms and generate checksums
 ifdef GITHUB_TOKEN
