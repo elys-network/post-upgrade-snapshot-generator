@@ -1258,6 +1258,7 @@ github.com/cosmos/cosmos-sdk v0.47.0-rc2.0.20230220103612-f094a0c33410/go.mod h1
 github.com/cosmos/cosmos-sdk v0.47.3/go.mod h1:c4OfLdAykA9zsj1CqrxBRqXzVz48I++JSvIMPSPcEmk=
 github.com/cosmos/cosmos-sdk v0.50.12 h1:WizeD4K74737Gq46/f9fq+WjyZ1cP/1bXwVR3dvyp0g=
 github.com/cosmos/cosmos-sdk v0.50.12/go.mod h1:hrWEFMU1eoXqLJeE6VVESpJDQH67FS1nnMrQIjO2daw=
+github.com/cosmos/cosmos-sdk v0.50.13/go.mod h1:hrWEFMU1eoXqLJeE6VVESpJDQH67FS1nnMrQIjO2daw=
 github.com/cosmos/cosmos-sdk/db v1.0.0-beta.1.0.20220726092710-f848e4300a8a/go.mod h1:c8IO23vgNxueCCJlSI9awQtcxsvc+buzaeThB85qfBU=
 github.com/cosmos/go-bip39 v0.0.0-20180819234021-555e2067c45d/go.mod h1:tSxLoYXyBmiFeKpvmq4dzayMdCjCnu8uqmCysIGBT2Y=
 github.com/cosmos/go-bip39 v1.0.0 h1:pcomnQdrdH22njcAatO0yWojsUnCO3y2tNoV1cb6hHY=
@@ -1283,6 +1284,7 @@ github.com/cosmos/ibc-go/modules/capability v1.0.1 h1:ibwhrpJ3SftEEZRxCRkH0fQZ9s
 github.com/cosmos/ibc-go/modules/capability v1.0.1/go.mod h1:rquyOV262nGJplkumH+/LeYs04P3eV8oB7ZM4Ygqk4E=
 github.com/cosmos/ibc-go/v8 v8.6.1 h1:35JQ9HttSDNLjy4J/ZxmmFbzw0cRVjoCRKkc3ngDZms=
 github.com/cosmos/ibc-go/v8 v8.6.1/go.mod h1:Hd3kDFNOhQ/EnYt8qb84/r78tA/lOYC3IkLMbpurs3I=
+github.com/cosmos/ibc-go/v8 v8.7.0/go.mod h1:G2z+Q6ZQSMcyHI2+BVcJdvfOupb09M2h/tgpXOEdY6k=
 github.com/cosmos/ics23/go v0.11.0 h1:jk5skjT0TqX5e5QJbEnwXIS2yI2vnmLOgpQPeM5RtnU=
 github.com/cosmos/ics23/go v0.11.0/go.mod h1:A8OjxPE67hHST4Icw94hOxxFEJMBG031xIGF/JHNIY0=
 github.com/cosmos/interchain-security/v6 v6.3.0 h1:AIsfxLUDtUGVfaqJ1WPwnYIOT5AxoSO58469iw9vNH4=
@@ -1427,6 +1429,8 @@ github.com/elys-network/bandchain-packet v0.0.3-sdk47 h1:W4sP/JOXAoABhsV+ck1NTph
 github.com/elys-network/bandchain-packet v0.0.3-sdk47/go.mod h1:/CtU24lu2E4RbPRcZFJfEagwW6TUdFcxv7pX0cYYSgk=
 github.com/elys-network/elys v1.6.1-0.20250305051916-e589417b6d6a h1:pp1sIDp9SEzHwmpJWOpb3V/ntHOu6O/qyzcf9WMfDD0=
 github.com/elys-network/elys v1.6.1-0.20250305051916-e589417b6d6a/go.mod h1:wxIjuDm3iNDHc5g1xmfj3DLZTybEIwYvhGKoq5w9piA=
+github.com/elys-network/elys v1.6.1-0.20250328152859-7c83d9ca8d21 h1:Eppzw26UyQRNDH2LiWgG5Q8ny6JdjPXppbvAEngUnBI=
+github.com/elys-network/elys v1.6.1-0.20250328152859-7c83d9ca8d21/go.mod h1:xVKSGRVV44xZ1kLF/OP3YrzykGYSuBsdHUKSFJsY52Y=
 github.com/emicklei/dot v1.6.2 h1:08GN+DD79cy/tzN6uLCT84+2Wk9u+wvqP+Hkx/dIR8A=
 github.com/emicklei/dot v1.6.2/go.mod h1:DeV7GvQtIw4h2u73RKBkkFdvVAz0D9fzeJrgPW6gy/s=
 github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633/go.mod h1:otzb+WCGbkyDHkqmQmT5YD2WR4BBwUdeQoFo8l/7tVs=
