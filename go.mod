@@ -14,10 +14,10 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.11
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.1
 	github.com/cometbft/cometbft v0.38.17
-	github.com/cosmos/cosmos-sdk v0.50.12
+	github.com/cosmos/cosmos-sdk v0.50.13
 	github.com/cosmos/ibc-go/modules/capability v1.0.1
-	github.com/cosmos/ibc-go/v8 v8.6.1
-	github.com/elys-network/elys v1.6.1-0.20250305051916-e589417b6d6a
+	github.com/cosmos/ibc-go/v8 v8.7.0
+	github.com/elys-network/elys v1.6.1-0.20250328152859-7c83d9ca8d21
 	github.com/ojo-network/ojo v0.5.1-rc3.0.20250221003619-10b35762ed3b
 	github.com/spf13/cobra v1.8.1
 	github.com/vbauerster/mpb/v8 v8.8.3
