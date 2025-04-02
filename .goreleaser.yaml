@@ -154,7 +154,7 @@ checksum:
   name_template: "sha256sum.txt"
   algorithm: sha256
 changelog:
-  skip: true
+  disable: true
 release:
   github:
     owner: elys-network
