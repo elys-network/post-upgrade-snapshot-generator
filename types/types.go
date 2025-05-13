@@ -6,11 +6,14 @@ import (
 
 	evidencetypes "cosmossdk.io/x/evidence/types"
 	feegranttypes "cosmossdk.io/x/feegrant"
+	cometbfttypes "github.com/cometbft/cometbft/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	authz "github.com/cosmos/cosmos-sdk/x/authz"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	crisistypes "github.com/cosmos/cosmos-sdk/x/crisis/types"
 	distributiontypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
+	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	govv1types "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
@@ -28,7 +31,9 @@ import (
 	burnertypes "github.com/elys-network/elys/x/burner/types"
 	commitmenttypes "github.com/elys-network/elys/x/commitment/types"
 	epochstypes "github.com/elys-network/elys/x/epochs/types"
+	estakingtypes "github.com/elys-network/elys/x/estaking/types"
 	leveragelptypes "github.com/elys-network/elys/x/leveragelp/types"
+	mastercheftypes "github.com/elys-network/elys/x/masterchef/types"
 	oracletypes "github.com/elys-network/elys/x/oracle/types"
 	parametertypes "github.com/elys-network/elys/x/parameter/types"
 	perpetualtypes "github.com/elys-network/elys/x/perpetual/types"
@@ -36,13 +41,6 @@ import (
 	tiertypes "github.com/elys-network/elys/x/tier/types"
 	tokenomicstypes "github.com/elys-network/elys/x/tokenomics/types"
 	tradeshieldtypes "github.com/elys-network/elys/x/tradeshield/types"
-	transferhooktypes "github.com/elys-network/elys/x/transferhook/types"
-
-	cometbfttypes "github.com/cometbft/cometbft/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
-	estakingtypes "github.com/elys-network/elys/x/estaking/types"
-	mastercheftypes "github.com/elys-network/elys/x/masterchef/types"
 )
 
 type Genesis struct {
@@ -108,45 +106,44 @@ type ABCIParams struct {
 }
 
 type AppState struct {
-	Amm                Amm                            `json:"amm"`
-	AssetProfile       AssetProfile                   `json:"assetprofile"`
-	Auth               Auth                           `json:"auth"`
-	AuthZ              authz.GenesisState             `json:"authz"`
-	Bank               banktypes.GenesisState         `json:"bank"`
-	Burner             burnertypes.GenesisState       `json:"burner"`
-	Capability         Capability                     `json:"capability"`
-	Commitment         Commitment                     `json:"commitment"`
-	Ccvconsumer        interface{}                    `json:"ccvconsumer"`
-	Crisis             crisistypes.GenesisState       `json:"crisis"`
-	Distribution       Distribution                   `json:"distribution"`
-	Epochs             Epochs                         `json:"epochs"`
-	Estaking           Estaking                       `json:"estaking"`
-	Evidence           EvidenceState                  `json:"evidence"`
-	Feegrant           feegranttypes.GenesisState     `json:"feegrant"`
-	Feeibc             Feeibc                         `json:"feeibc"`
-	Genutil            Genutil                        `json:"genutil"`
-	Gov                Gov                            `json:"gov"`
-	Group              interface{}                    `json:"group"`
-	Ibc                Ibc                            `json:"ibc"`
-	Interchainaccounts interface{}                    `json:"interchainaccounts"`
-	LeverageLP         LeverageLP                     `json:"leveragelp"`
-	Masterchef         Masterchef                     `json:"masterchef"`
-	Mint               Mint                           `json:"mint"`
-	Oracle             Oracle                         `json:"oracle"`
-	Parameter          Parameter                      `json:"parameter"`
-	Params             interface{}                    `json:"params"`
-	Perpetual          Perpetual                      `json:"perpetual"`
-	PoolAccounted      PoolAccounted                  `json:"poolaccounted"`
-	Slashing           Slashing                       `json:"slashing"`
-	StableStake        StableStake                    `json:"stablestake"`
-	Staking            Staking                        `json:"staking"`
-	Tier               Tier                           `json:"tier"`
-	Tokenomics         Tokenomics                     `json:"tokenomics"`
-	Tradeshield        Tradeshield                    `json:"tradeshield"`
-	Transfer           transfertypes.GenesisState     `json:"transfer"`
-	TransferHook       transferhooktypes.GenesisState `json:"transferhook"`
-	Upgrade            interface{}                    `json:"upgrade"`
-	Vesting            interface{}                    `json:"vesting"`
+	Amm                Amm                        `json:"amm"`
+	AssetProfile       AssetProfile               `json:"assetprofile"`
+	Auth               Auth                       `json:"auth"`
+	AuthZ              authz.GenesisState         `json:"authz"`
+	Bank               banktypes.GenesisState     `json:"bank"`
+	Burner             burnertypes.GenesisState   `json:"burner"`
+	Capability         Capability                 `json:"capability"`
+	Commitment         Commitment                 `json:"commitment"`
+	Ccvconsumer        interface{}                `json:"ccvconsumer"`
+	Crisis             crisistypes.GenesisState   `json:"crisis"`
+	Distribution       Distribution               `json:"distribution"`
+	Epochs             Epochs                     `json:"epochs"`
+	Estaking           Estaking                   `json:"estaking"`
+	Evidence           EvidenceState              `json:"evidence"`
+	Feegrant           feegranttypes.GenesisState `json:"feegrant"`
+	Feeibc             Feeibc                     `json:"feeibc"`
+	Genutil            Genutil                    `json:"genutil"`
+	Gov                Gov                        `json:"gov"`
+	Group              interface{}                `json:"group"`
+	Ibc                Ibc                        `json:"ibc"`
+	Interchainaccounts interface{}                `json:"interchainaccounts"`
+	LeverageLP         LeverageLP                 `json:"leveragelp"`
+	Masterchef         Masterchef                 `json:"masterchef"`
+	Mint               Mint                       `json:"mint"`
+	Oracle             Oracle                     `json:"oracle"`
+	Parameter          Parameter                  `json:"parameter"`
+	Params             interface{}                `json:"params"`
+	Perpetual          Perpetual                  `json:"perpetual"`
+	PoolAccounted      PoolAccounted              `json:"poolaccounted"`
+	Slashing           Slashing                   `json:"slashing"`
+	StableStake        StableStake                `json:"stablestake"`
+	Staking            Staking                    `json:"staking"`
+	Tier               Tier                       `json:"tier"`
+	Tokenomics         Tokenomics                 `json:"tokenomics"`
+	Tradeshield        Tradeshield                `json:"tradeshield"`
+	Transfer           transfertypes.GenesisState `json:"transfer"`
+	Upgrade            interface{}                `json:"upgrade"`
+	Vesting            interface{}                `json:"vesting"`
 	// Include other fields as needed
 }
 

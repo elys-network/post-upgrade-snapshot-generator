@@ -43,7 +43,6 @@ func Export(cmdPath, homePath, genesisFilePath string) {
 		"tokenomics",
 		"tradeshield",
 		"transfer",
-		"transferhook",
 		"upgrade",
 		"vesting",
 		"wasm",

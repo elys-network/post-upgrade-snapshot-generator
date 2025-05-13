@@ -2593,11 +2593,6 @@
             },
             "total_escrowed": []
         },
-        "transferhook": {
-            "params": {
-                "amm_active": true
-            }
-        },
         "upgrade": {},
         "vesting": {}
     },
