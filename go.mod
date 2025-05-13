@@ -1,6 +1,6 @@
 module github.com/elys-network/post-upgrade-snapshot-generator
 
-go 1.23.9
+go 1.23.6
 
 require (
 	cosmossdk.io/math v1.4.0
