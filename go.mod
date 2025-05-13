@@ -254,8 +254,8 @@ require (
 )
 
 replace (
+	cosmossdk.io/core => cosmossdk.io/core v0.11.1
 	github.com/bandprotocol/bandchain-packet => github.com/elys-network/bandchain-packet v0.0.3-sdk47
-
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	// replace broken goleveldb
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
