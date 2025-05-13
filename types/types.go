@@ -290,6 +290,8 @@ type StableStake struct {
 	Params       StableStakeParams `json:"params"`
 	DebtList     []interface{}     `json:"debt_list"`
 	InterestList []interface{}     `json:"interest_list"`
+	AmmPools     []interface{}     `json:"amm_pools"`
+	Pools        []interface{}     `json:"pools"`
 }
 
 type StableStakeParams struct {
