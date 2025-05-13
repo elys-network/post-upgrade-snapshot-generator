@@ -17,7 +17,7 @@ require (
 	github.com/cosmos/cosmos-sdk v0.50.13
 	github.com/cosmos/ibc-go/modules/capability v1.0.1
 	github.com/cosmos/ibc-go/v8 v8.7.0
-	github.com/elys-network/elys v1.6.1-0.20250328152859-7c83d9ca8d21
+	github.com/elys-network/elys v1.6.1-0.20250509144400-ad7942d63613
 	github.com/spf13/cobra v1.8.1
 	github.com/vbauerster/mpb/v8 v8.8.3
 )
@@ -32,7 +32,7 @@ require (
 	cosmossdk.io/api v0.7.6 // indirect
 	cosmossdk.io/client/v2 v2.0.0-beta.7 // indirect
 	cosmossdk.io/collections v0.4.0 // indirect
-	cosmossdk.io/core v0.11.1 // indirect
+	cosmossdk.io/core v0.12.0 // indirect
 	cosmossdk.io/depinject v1.1.0 // indirect
 	cosmossdk.io/errors v1.0.1 // indirect
 	cosmossdk.io/log v1.5.0 // indirect
@@ -103,7 +103,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/google/flatbuffers v2.0.8+incompatible // indirect
+	github.com/google/flatbuffers v23.5.26+incompatible // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/orderedcode v0.0.1 // indirect
 	github.com/google/s2a-go v0.1.8 // indirect
@@ -126,7 +126,7 @@ require (
 	github.com/iancoleman/strcase v0.3.0 // indirect
 	github.com/improbable-eng/grpc-web v0.15.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
+	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
@@ -202,7 +202,7 @@ require (
 	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
 	github.com/godbus/dbus v0.0.0-20190726142602-4481cbc300e2 // indirect
-	github.com/golang/glog v1.2.3 // indirect
+	github.com/golang/glog v1.2.4 // indirect
 	github.com/golang/snappy v0.0.5-0.20220116011046-fa5810519dcb // indirect
 	github.com/google/btree v1.1.3 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
