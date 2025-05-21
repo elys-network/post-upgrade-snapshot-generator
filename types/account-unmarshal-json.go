@@ -43,6 +43,12 @@ func (a *Account) UnmarshalJSON(data []byte) error {
 			return err
 		}
 		a.ModuleAccount = &ma
+	case "/ibc.applications.interchain_accounts.v1.InterchainAccount":
+		var ica InterchainAccount
+		if err := json.Unmarshal(data, &ica); err != nil {
+			return err
+		}
+		a.InterchainAccount = &ica
 	default:
 		return fmt.Errorf("unknown account type: %s", a.Type)
 	}
