@@ -19,6 +19,7 @@ import (
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
+	icatypes "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/types"
 	feeibctypes "github.com/cosmos/ibc-go/v8/modules/apps/29-fee/types"
 	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	ibcclienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
@@ -126,7 +127,7 @@ type AppState struct {
 	Gov                Gov                        `json:"gov"`
 	Group              interface{}                `json:"group"`
 	Ibc                Ibc                        `json:"ibc"`
-	Interchainaccounts interface{}                `json:"interchainaccounts"`
+	Interchainaccounts icatypes.InterchainAccount `json:"interchainaccounts"`
 	LeverageLP         LeverageLP                 `json:"leveragelp"`
 	Masterchef         Masterchef                 `json:"masterchef"`
 	Mint               Mint                       `json:"mint"`
