@@ -19,7 +19,6 @@ import (
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	capabilitytypes "github.com/cosmos/ibc-go/modules/capability/types"
-	icatypes "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts/types"
 	feeibctypes "github.com/cosmos/ibc-go/v8/modules/apps/29-fee/types"
 	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	ibcclienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
@@ -127,7 +126,7 @@ type AppState struct {
 	Gov                Gov                        `json:"gov"`
 	Group              interface{}                `json:"group"`
 	Ibc                Ibc                        `json:"ibc"`
-	Interchainaccounts icatypes.InterchainAccount `json:"interchainaccounts"`
+	Interchainaccounts interface{}                `json:"interchainaccounts"`
 	LeverageLP         LeverageLP                 `json:"leveragelp"`
 	Masterchef         Masterchef                 `json:"masterchef"`
 	Mint               Mint                       `json:"mint"`
@@ -682,10 +681,16 @@ type ModuleAccount struct {
 }
 
 type Account struct {
-	*VestingAccount `json:",omitempty"`
-	*BaseAccount    `json:",omitempty"`
-	*ModuleAccount  `json:",omitempty"`
-	Type            string `json:"@type"`
+	*VestingAccount    `json:",omitempty"`
+	*BaseAccount       `json:",omitempty"`
+	*ModuleAccount     `json:",omitempty"`
+	*InterchainAccount `json:",omitempty"`
+	Type               string `json:"@type"`
+}
+
+type InterchainAccount struct {
+	BaseAccount  BaseAccount `json:"base_account"`
+	AccountOwner string      `json:"account_owner"`
 }
 
 type Auth struct {
