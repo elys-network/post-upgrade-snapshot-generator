@@ -681,10 +681,16 @@ type ModuleAccount struct {
 }
 
 type Account struct {
-	*VestingAccount `json:",omitempty"`
-	*BaseAccount    `json:",omitempty"`
-	*ModuleAccount  `json:",omitempty"`
-	Type            string `json:"@type"`
+	*VestingAccount    `json:",omitempty"`
+	*BaseAccount       `json:",omitempty"`
+	*ModuleAccount     `json:",omitempty"`
+	*InterchainAccount `json:",omitempty"`
+	Type               string `json:"@type"`
+}
+
+type InterchainAccount struct {
+	BaseAccount  BaseAccount `json:"base_account"`
+	AccountOwner string      `json:"account_owner"`
 }
 
 type Auth struct {
