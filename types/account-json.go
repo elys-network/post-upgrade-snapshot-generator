@@ -56,46 +56,50 @@ func (a *Account) UnmarshalJSON(data []byte) error {
 }
 
 func (a Account) MarshalJSON() ([]byte, error) {
-	// Helper function to add the "@type" field
-	addTypeField := func(aux interface{}) ([]byte, error) {
-		type wrapper struct {
-			Type string `json:"@type"`
-			Data interface{}
-		}
-		return json.Marshal(wrapper{
-			Type: a.Type,
-			Data: aux,
-		})
-	}
+	var base interface{}
 
-	// Delegate marshalling based on the Type field
 	switch a.Type {
 	case "/cosmos.vesting.v1beta1.PeriodicVestingAccount",
 		"/cosmos.vesting.v1beta1.ContinuousVestingAccount":
 		if a.VestingAccount == nil {
-			return nil, fmt.Errorf("missing VestingAccount data")
+			return nil, fmt.Errorf("vesting account is nil for type %s", a.Type)
 		}
-		return addTypeField(*a.VestingAccount)
+		base = a.VestingAccount
 
 	case "/cosmos.auth.v1beta1.BaseAccount":
 		if a.BaseAccount == nil {
-			return nil, fmt.Errorf("missing BaseAccount data")
+			return nil, fmt.Errorf("base account is nil for type %s", a.Type)
 		}
-		return addTypeField(*a.BaseAccount)
+		base = a.BaseAccount
 
 	case "/cosmos.auth.v1beta1.ModuleAccount":
 		if a.ModuleAccount == nil {
-			return nil, fmt.Errorf("missing ModuleAccount data")
+			return nil, fmt.Errorf("module account is nil for type %s", a.Type)
 		}
-		return addTypeField(*a.ModuleAccount)
+		base = a.ModuleAccount
 
 	case "/ibc.applications.interchain_accounts.v1.InterchainAccount":
 		if a.InterchainAccount == nil {
-			return nil, fmt.Errorf("missing InterchainAccount data")
+			return nil, fmt.Errorf("interchain account is nil for type %s", a.Type)
 		}
-		return addTypeField(*a.InterchainAccount)
+		base = a.InterchainAccount
 
 	default:
 		return nil, fmt.Errorf("unknown account type found during Marshalling: %s", a.Type)
 	}
+
+	// Marshal the underlying account struct to JSON
+	bz, err := json.Marshal(base)
+	if err != nil {
+		return nil, err
+	}
+
+	// Convert to map to inject @type
+	var raw map[string]interface{}
+	if err := json.Unmarshal(bz, &raw); err != nil {
+		return nil, err
+	}
+	raw["@type"] = a.Type
+
+	return json.Marshal(raw)
 }
