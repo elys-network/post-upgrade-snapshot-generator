@@ -15,7 +15,7 @@ require (
 	github.com/cosmos/cosmos-sdk v0.50.13
 	github.com/cosmos/ibc-go/modules/capability v1.0.1
 	github.com/cosmos/ibc-go/v8 v8.7.0
-	github.com/elys-network/elys v1.6.1-0.20250509144400-ad7942d63613
+	github.com/elys-network/elys v1.6.1-0.20250513161550-468015b53574
 	github.com/spf13/cobra v1.8.1
 	github.com/vbauerster/mpb/v8 v8.8.3
 )
