@@ -478,6 +478,8 @@ github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFP
 github.com/edsrzf/mmap-go v1.0.0/go.mod h1:YO35OhQPt3KJa3ryjFM5Bs14WD66h8eGKpfaBNrHW5M=
 github.com/elys-network/elys v1.6.1-0.20250509144400-ad7942d63613 h1:2Kh/377w76QSuLcohMP+L6BxrYJF+M6dME7pg+fOyHo=
 github.com/elys-network/elys v1.6.1-0.20250509144400-ad7942d63613/go.mod h1:D/4PzOi2dbJaNgekQCgBWGryUhm3ipdhlBtqMYfFrPM=
+github.com/elys-network/elys v1.6.1-0.20250513161550-468015b53574 h1:kFDglNDAOS7Wp1FejiN4xpxF13rj+kznY5q+RWrExG8=
+github.com/elys-network/elys v1.6.1-0.20250513161550-468015b53574/go.mod h1:D/4PzOi2dbJaNgekQCgBWGryUhm3ipdhlBtqMYfFrPM=
 github.com/emicklei/dot v1.6.2 h1:08GN+DD79cy/tzN6uLCT84+2Wk9u+wvqP+Hkx/dIR8A=
 github.com/emicklei/dot v1.6.2/go.mod h1:DeV7GvQtIw4h2u73RKBkkFdvVAz0D9fzeJrgPW6gy/s=
 github.com/envoyproxy/go-control-plane v0.6.9/go.mod h1:SBwIajubJHhxtWwsL9s8ss4safvEdbitLhGGK48rN6g=
