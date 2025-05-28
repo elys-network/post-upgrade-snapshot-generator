@@ -652,9 +652,10 @@ type Perpetual struct {
 type PerpetualParams struct {
 	perpetualtypes.Params
 
-	MaxOpenPositions json.Number   `json:"max_open_positions"`
-	MaxLimitOrder    json.Number   `json:"max_limit_order"`
-	EnabledPools     []json.Number `json:"enabled_pools"`
+	MaxOpenPositions                       json.Number   `json:"max_open_positions"`
+	MaxLimitOrder                          json.Number   `json:"max_limit_order"`
+	EnabledPools                           []json.Number `json:"enabled_pools"`
+	LegacyBorrowInterestPaymentFundAddress string        `json:"legacy_borrow_interest_payment_fund_address"`
 }
 
 type AuthParams struct {
@@ -681,10 +682,16 @@ type ModuleAccount struct {
 }
 
 type Account struct {
-	*VestingAccount `json:",omitempty"`
-	*BaseAccount    `json:",omitempty"`
-	*ModuleAccount  `json:",omitempty"`
-	Type            string `json:"@type"`
+	*VestingAccount    `json:",omitempty"`
+	*BaseAccount       `json:",omitempty"`
+	*ModuleAccount     `json:",omitempty"`
+	*InterchainAccount `json:",omitempty"`
+	Type               string `json:"@type"`
+}
+
+type InterchainAccount struct {
+	BaseAccount  BaseAccount `json:"base_account"`
+	AccountOwner string      `json:"account_owner"`
 }
 
 type Auth struct {
