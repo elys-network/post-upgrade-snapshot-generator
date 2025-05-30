@@ -332,12 +332,14 @@ type KolList struct {
 type CommitmentParams struct {
 	commitmenttypes.Params
 
-	VestingInfos            []CommitmentVestingInfo `json:"vesting_infos"`
-	NumberOfCommitments     json.Number             `json:"number_of_commitments"`
-	StartAirdropClaimHeight json.Number             `json:"start_airdrop_claim_height"`
-	EndAirdropClaimHeight   json.Number             `json:"end_airdrop_claim_height"`
-	StartKolClaimHeight     json.Number             `json:"start_kol_claim_height"`
-	EndKolClaimHeight       json.Number             `json:"end_kol_claim_height"`
+	VestingInfos                  []CommitmentVestingInfo `json:"vesting_infos"`
+	NumberOfCommitments           json.Number             `json:"number_of_commitments"`
+	StartAirdropClaimHeight       json.Number             `json:"start_airdrop_claim_height"`
+	EndAirdropClaimHeight         json.Number             `json:"end_airdrop_claim_height"`
+	StartKolClaimHeight           json.Number             `json:"start_kol_claim_height"`
+	EndKolClaimHeight             json.Number             `json:"end_kol_claim_height"`
+	StartRewardProgramClaimHeight json.Number             `json:"start_reward_program_claim_height"`
+	EndRewardProgramClaimHeight   json.Number             `json:"end_reward_program_claim_height"`
 }
 
 type CommitmentVestingInfo struct {
