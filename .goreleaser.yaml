@@ -72,6 +72,7 @@ builds:
         - wget https://github.com/elys-network/resources/raw/refs/heads/main/x86_64-linux-musl-cross.tgz
         - tar xf x86_64-linux-musl-cross.tgz
         - mv x86_64-linux-musl-cross /opt/musl-cross
+        - go clean -cache -modcache
     goos:
       - linux
     goarch:
