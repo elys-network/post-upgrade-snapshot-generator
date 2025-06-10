@@ -25,22 +25,22 @@ import (
 	ibcconnectiontypes "github.com/cosmos/ibc-go/v8/modules/core/03-connection/types"
 	ibcchanneltypes "github.com/cosmos/ibc-go/v8/modules/core/04-channel/types"
 	ibctypes "github.com/cosmos/ibc-go/v8/modules/core/types"
-	accountedpooltypes "github.com/elys-network/elys/v5/x/accountedpool/types"
-	ammtypes "github.com/elys-network/elys/v5/x/amm/types"
-	assetprofiletypes "github.com/elys-network/elys/v5/x/assetprofile/types"
-	burnertypes "github.com/elys-network/elys/v5/x/burner/types"
-	commitmenttypes "github.com/elys-network/elys/v5/x/commitment/types"
-	epochstypes "github.com/elys-network/elys/v5/x/epochs/types"
-	estakingtypes "github.com/elys-network/elys/v5/x/estaking/types"
-	leveragelptypes "github.com/elys-network/elys/v5/x/leveragelp/types"
-	mastercheftypes "github.com/elys-network/elys/v5/x/masterchef/types"
-	oracletypes "github.com/elys-network/elys/v5/x/oracle/types"
-	parametertypes "github.com/elys-network/elys/v5/x/parameter/types"
-	perpetualtypes "github.com/elys-network/elys/v5/x/perpetual/types"
-	stablestaketypes "github.com/elys-network/elys/v5/x/stablestake/types"
-	tiertypes "github.com/elys-network/elys/v5/x/tier/types"
-	tokenomicstypes "github.com/elys-network/elys/v5/x/tokenomics/types"
-	tradeshieldtypes "github.com/elys-network/elys/v5/x/tradeshield/types"
+	accountedpooltypes "github.com/elys-network/elys/v6/x/accountedpool/types"
+	ammtypes "github.com/elys-network/elys/v6/x/amm/types"
+	assetprofiletypes "github.com/elys-network/elys/v6/x/assetprofile/types"
+	burnertypes "github.com/elys-network/elys/v6/x/burner/types"
+	commitmenttypes "github.com/elys-network/elys/v6/x/commitment/types"
+	epochstypes "github.com/elys-network/elys/v6/x/epochs/types"
+	estakingtypes "github.com/elys-network/elys/v6/x/estaking/types"
+	leveragelptypes "github.com/elys-network/elys/v6/x/leveragelp/types"
+	mastercheftypes "github.com/elys-network/elys/v6/x/masterchef/types"
+	oracletypes "github.com/elys-network/elys/v6/x/oracle/types"
+	parametertypes "github.com/elys-network/elys/v6/x/parameter/types"
+	perpetualtypes "github.com/elys-network/elys/v6/x/perpetual/types"
+	stablestaketypes "github.com/elys-network/elys/v6/x/stablestake/types"
+	tiertypes "github.com/elys-network/elys/v6/x/tier/types"
+	tokenomicstypes "github.com/elys-network/elys/v6/x/tokenomics/types"
+	tradeshieldtypes "github.com/elys-network/elys/v6/x/tradeshield/types"
 )
 
 type Genesis struct {
@@ -439,8 +439,9 @@ type Parameter struct {
 type ParameterParams struct {
 	parametertypes.Params
 
-	TotalBlocksPerYear  json.Number `json:"total_blocks_per_year"`
-	RewardsDataLifetime json.Number `json:"rewards_data_lifetime"`
+	TotalBlocksPerYear         json.Number `json:"total_blocks_per_year"`
+	RewardsDataLifetime        json.Number `json:"rewards_data_lifetime"`
+	TakerFeeCollectionInterval json.Number `json:"taker_fee_collection_interval"`
 }
 
 type Capability struct {
@@ -646,9 +647,10 @@ type LeverageLPParams struct {
 type Perpetual struct {
 	perpetualtypes.GenesisState
 
-	Params   PerpetualParams `json:"params"`
-	PoolList []interface{}   `json:"pool_list"`
-	MtpList  []interface{}   `json:"mtp_list"`
+	Params           PerpetualParams `json:"params"`
+	PoolList         []interface{}   `json:"pool_list"`
+	MtpList          []interface{}   `json:"mtp_list"`
+	PerpetualCounter []interface{}   `json:"perpetual_counter"`
 }
 
 type PerpetualParams struct {

@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	elysdcmd "github.com/elys-network/elys/v5/cmd/elysd/cmd"
+	elysdcmd "github.com/elys-network/elys/v6/cmd/elysd/cmd"
 	"github.com/elys-network/post-upgrade-snapshot-generator/flags"
 	"github.com/elys-network/post-upgrade-snapshot-generator/types"
 	"github.com/elys-network/post-upgrade-snapshot-generator/utils"
