@@ -659,6 +659,7 @@ type PerpetualParams struct {
 	MaxOpenPositions json.Number   `json:"max_open_positions"`
 	MaxLimitOrder    json.Number   `json:"max_limit_order"`
 	EnabledPools     []json.Number `json:"enabled_pools"`
+	ExitBuffer       json.Number   `json:"exit_buffer"`
 }
 
 type AuthParams struct {
