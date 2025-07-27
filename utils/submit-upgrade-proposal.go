@@ -13,7 +13,7 @@ import (
 func generateUpgradeVersion(currentVersion string) string {
 	parts := strings.Split(currentVersion, ".")
 	if len(parts) != 3 {
-		panic(fmt.Sprintf("Invalid version format: %s. Expected format: vX.Y.Z", currentVersion))
+		panic(fmt.Sprintf("Invalid version format: %s Expected format: vX.Y.Z", currentVersion))
 	}
 	majorVersion := strings.TrimPrefix(parts[0], "v")
 	return fmt.Sprintf("v%s", majorVersion)
