@@ -60,15 +60,6 @@ type Consensus struct {
 	Params *ConsensusParams `json:"params"`
 }
 
-type GenesisValidator struct {
-	cometbfttypes.GenesisValidator
-
-	Address string `json:"address"`
-	PubKey  string `json:"pub_key"`
-	Power   string `json:"power"`
-	Name    string `json:"name"`
-}
-
 type ConsensusParams struct {
 	cometbfttypes.ConsensusParams
 
